@@ -5,7 +5,7 @@ from tkinter.messagebox import showinfo
 from constants import color_buttons
 from widgets import widget_instance
 from frames import BaseFrame
-from theme_manager import create_theme_buttons, set_main_window, set_update_callback
+from theme_manager import create_theme_buttons, set_main_window, set_update_callback, get_current_color, change_color_button
 from dissertation_frame import create_dissertation_frame
 from date_frame import create_date_frame
 from guide_frame import create_guide_frame
@@ -25,8 +25,8 @@ set_appearance_mode('dark')
 # تنظیم پنجره اصلی در theme_manager
 set_main_window(window)
 
-# متغیر کنترل کننده رنگ
-controller_var = StringVar(value=color_buttons)
+# متغیر کنترل کننده رنگ - مقدار اولیه از تابع get_current_color گرفته می‌شود
+controller_var = StringVar(value=get_current_color())
 
 # متغیرهای سراسری برای فریم‌ها
 window1 = None
@@ -117,6 +117,9 @@ def rebuild_all_frames():
     
     # بازسازی دکمه‌های صفحه اصلی
     create_main_buttons()
+    
+    # اعمال رنگ ذخیره شده به تمام ویجت‌ها
+    window.after(100, lambda: change_color_button(get_current_color()))
     
     # نمایش فریم اصلی
     show_frame('main')
