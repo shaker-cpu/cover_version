@@ -3,7 +3,7 @@ from customtkinter import *
 from tkinter import colorchooser
 from PIL import Image
 import os
-from constants import all_buttons, all_entry, all_combo_box, all_check_box, all_textbox, colors, here, color_buttons
+from constants import all_buttons, all_entry, all_combo_box, all_check_box, all_textbox, colors, here,color_buttons
 from languages import get_text, set_language, get_language_name
 
 # لیست سراسری برای نگهداری رادیو باتن‌ها
@@ -12,9 +12,6 @@ radio_buttons_list = []
 # متغیر سراسری برای پنجره اصلی
 main_window = None
 update_all_texts_callback = None
-
-# متغیر سراسری برای ذخیره رنگ فعلی
-current_button_color = color_buttons
 
 def set_main_window(window):
     """تنظیم پنجره اصلی برای تغییر پس زمینه"""
@@ -28,9 +25,6 @@ def set_update_callback(callback):
 
 def change_color_button(color_code):
     """تغییر رنگ تمام ویجت‌ها"""
-    global current_button_color
-    current_button_color = color_code
-    
     for btn in all_buttons:
         try:
             btn.configure(fg_color=color_code)
@@ -66,15 +60,11 @@ def change_color_button(color_code):
         except:
             pass
 
-def get_current_color():
-    """دریافت رنگ فعلی دکمه‌ها"""
-    return current_button_color
-
 def holly_color(controller_var):
     """انتخاب رنگ سفارشی"""
     try:
         a = colorchooser.askcolor(color=(255, 255, 255))
-        if a and a[1]:
+        if a[1]:
             controller_var.set(a[1])
             change_color_button(a[1])
     except:
@@ -84,7 +74,7 @@ def change_mode(window, controller_var, window_theme):
     """تغییر رنگ پس زمینه"""
     try:
         a = colorchooser.askcolor(color=(255, 255, 255))
-        if a and a[1]:
+        if a[1]:
             if main_window:
                 main_window.configure(fg_color=a[1])
             
@@ -130,9 +120,6 @@ def create_theme_buttons(window_theme, controller_var):
     global radio_buttons_list
     radio_buttons_list = []
     
-    # تنظیم مقدار اولیه controller_var به رنگ فعلی
-    controller_var.set(current_button_color)
-    
     for i, color in enumerate(colors):
         radio = CTkRadioButton(
             window_theme,
@@ -170,7 +157,7 @@ def create_theme_buttons(window_theme, controller_var):
         values=languages_list,
         state='readonly',
         border_width=2,
-        border_color=current_button_color,  # استفاده از رنگ فعلی
+        border_color=color_buttons,
         dropdown_font=CTkFont('B Titr', 15),
         command=change_language,
         width=200
@@ -214,6 +201,6 @@ def create_theme_buttons(window_theme, controller_var):
             )
             btn_holly_collor.place(x=275, y=600)
     except Exception as e:
-        print(f'{get_text("language")} : {e}')
+        print(f'{get_text('language')} : {e}')
     
     return radio_buttons_list

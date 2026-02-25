@@ -2,7 +2,7 @@
 from customtkinter import *
 import webbrowser
 from tkinter.messagebox import showinfo
-from github_manager import get_github_repos
+from github_manager import get_github_repos, get_repo_info, REPO_URL
 from languages import get_text
 from constants import color_buttons, all_buttons
 import threading
