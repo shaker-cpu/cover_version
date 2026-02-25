@@ -9,6 +9,8 @@ from theme_manager import create_theme_buttons, set_main_window, set_update_call
 from dissertation_frame import create_dissertation_frame
 from date_frame import create_date_frame
 from guide_frame import create_guide_frame
+from other_programs_frame import OtherProgramsFrame
+from update_frame import UpdateFrame
 from languages import get_text
 import gc
 
@@ -33,6 +35,8 @@ window_History = None
 frame_guide_Dissertation = None
 window_makeing_Dissertation = None
 window_choose_date = None
+window_other_programs = None
+window_update = None
 dissertation_widgets = None
 
 # تابع نمایش فریم
@@ -44,6 +48,10 @@ def show_frame(frame_name):
     frame_guide_Dissertation.pack_forget()
     window_makeing_Dissertation.pack_forget()
     window_choose_date.pack_forget()
+    if window_other_programs:
+        window_other_programs.pack_forget()
+    if window_update:
+        window_update.pack_forget()
     
     frames = {
         'main': window1,
@@ -51,7 +59,9 @@ def show_frame(frame_name):
         'History': window_History,
         'guide_Dissertation': frame_guide_Dissertation,
         'Dissertation': window_makeing_Dissertation,
-        'choose_date': window_choose_date
+        'choose_date': window_choose_date,
+        'other_programs': window_other_programs,
+        'update': window_update
     }
     
     if frame_name in frames:
@@ -62,6 +72,7 @@ def rebuild_all_frames():
     """بازسازی کامل تمام فریم‌ها با زبان جدید"""
     global window1, window_theme, window_History, frame_guide_Dissertation
     global window_makeing_Dissertation, window_choose_date, dissertation_widgets
+    global window_other_programs, window_update
     
     # پاک کردن ویجت‌های قدیمی
     for widget in window.winfo_children():
@@ -88,6 +99,8 @@ def rebuild_all_frames():
     frame_guide_Dissertation = CTkFrame(window, fg_color='transparent')
     window_makeing_Dissertation = BaseFrame(window, show_frame, command_guide='Dissertation')
     window_choose_date = CTkFrame(window, fg_color='transparent')
+    window_other_programs = OtherProgramsFrame(window, show_frame)
+    window_update = UpdateFrame(window, show_frame, on_update_complete=rebuild_all_frames)
     
     # بازسازی ویجت‌های صفحات مختلف
     dissertation_widgets = create_dissertation_frame(
@@ -111,6 +124,7 @@ def rebuild_all_frames():
 # تابع ایجاد دکمه‌های صفحه اصلی
 def create_main_buttons():
     global btn_theme, btn_History, btn_guide, btn_Dissertation, btn_D_or_q, btn_Books, btn_Books_t
+    global btn_other_programs, btn_check_update
     
     btn_theme = widget_instance.CTk_Button(
         window1,
@@ -197,6 +211,33 @@ def create_main_buttons():
         command=lambda: show_frame('Dissertation')
     )
     btn_Books_t.place(x=350, y=370)
+    
+    # ========== دکمه‌های جدید ==========
+    # دکمه برنامه‌های دیگر
+    btn_other_programs = widget_instance.CTk_Button(
+        window1,
+        text="📦 برنامه‌های دیگر",
+        corner_radius=5,
+        bg_color='transparent',
+        hover_color='gray',
+        width=150, height=35,
+        font=CTkFont('B Titr', 14),
+        command=lambda: show_frame('other_programs')
+    )
+    btn_other_programs.place(x=120, y=570)
+    
+    # دکمه بررسی به‌روزرسانی
+    btn_check_update = widget_instance.CTk_Button(
+        window1,
+        text="🔄 بررسی به‌روزرسانی",
+        corner_radius=5,
+        bg_color='transparent',
+        hover_color='gray',
+        width=150, height=35,
+        font=CTkFont('B Titr', 14),
+        command=lambda: show_frame('update')
+    )
+    btn_check_update.place(x=350, y=570)
 
 # تابع به‌روزرسانی همه متن‌ها
 def update_all_texts():
