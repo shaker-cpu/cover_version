@@ -1,7 +1,7 @@
 # _____________________________ main.py _____________________________
+
 from customtkinter import *
 from tkinter.messagebox import showinfo
-
 from constants import color_buttons
 from widgets import widget_instance
 from frames import BaseFrame

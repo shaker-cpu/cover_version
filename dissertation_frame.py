@@ -1,4 +1,5 @@
 # _____________________________ dissertation_frame.py _____________________________
+
 from customtkinter import *
 from widgets import widget_instance
 from file_handlers import file_input, save_in, load_image

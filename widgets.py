@@ -1,4 +1,5 @@
 # _____________________________ widgets.py _____________________________
+
 from customtkinter import *
 from constants import all_buttons, all_entry, all_label, all_combo_box, all_check_box, all_textbox, color_buttons
 

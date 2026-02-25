@@ -1,4 +1,5 @@
 # _____________________________ guide_frame.py _____________________________
+
 from customtkinter import *
 from widgets import widget_instance
 from languages import get_text
