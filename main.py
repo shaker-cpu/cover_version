@@ -11,6 +11,7 @@ from date_frame import create_date_frame
 from guide_frame import create_guide_frame
 from other_programs_frame import OtherProgramsFrame
 from update_frame import UpdateFrame
+from history_frame import HistoryFrame
 from github_manager import get_current_version
 from languages import get_text
 import gc
@@ -67,6 +68,13 @@ def show_frame(frame_name):
     
     if frame_name in frames:
         frames[frame_name].pack(fill='both', expand=True)
+        
+        # تغییر رنگ فریم هنگام نمایش
+        if hasattr(frames[frame_name], 'configure'):
+            try:
+                frames[frame_name].configure(fg_color='transparent')
+            except:
+                pass
 
 # تابع نمایش درباره ما
 def show_about():
@@ -102,8 +110,7 @@ def rebuild_all_frames():
     window1 = CTkFrame(window, fg_color='transparent')
     window_theme = BaseFrame(window, show_frame, get_text('theme_guide_title'),
                              get_text('theme_guide_message'))
-    window_History = BaseFrame(window, show_frame, get_text('history_guide_title'),
-                               get_text('history_guide_message'))
+    window_History = HistoryFrame(window, show_frame)
     frame_guide_Dissertation = CTkFrame(window, fg_color='transparent')
     window_makeing_Dissertation = BaseFrame(window, show_frame, command_guide='Dissertation')
     window_choose_date = CTkFrame(window, fg_color='transparent')
@@ -126,7 +133,7 @@ def rebuild_all_frames():
     # بازسازی دکمه‌های صفحه اصلی
     create_main_buttons()
     
-    # اعمال رنگ ذخیره شده به تمام ویجت‌ها
+    # اعمال رنگ ذخیره شده به تمام ویجت‌ها و فریم‌ها
     window.after(100, lambda: change_color_button(get_current_color()))
     
     # نمایش فریم اصلی

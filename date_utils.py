@@ -1,7 +1,7 @@
 # _____________________________ date_utils.py _____________________________
 
 from jdatetime import date
-from languages import get_months
+from languages import get_text
 
 def get_current_date():
     """دریافت تاریخ جاری شمسی"""
@@ -19,5 +19,4 @@ def get_years_range():
 
 def format_date_display(month, year, lbl_date):
     """فرمت‌بندی تاریخ برای نمایش"""
-    from languages import get_text
     lbl_date.configure(text=f'{get_text("selected_date")}\n{month} {year}')

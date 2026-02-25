@@ -1,15 +1,13 @@
 # _____________________________ github_manager.py _____________________________
-
 import requests
 import os
 import shutil
 import zipfile
 import subprocess
 import sys
-from tkinter.messagebox import showinfo, showerror
+from tkinter.messagebox import showerror
 from constants import here
 from languages import get_text
-import json
 import tempfile
 
 # آدرس‌های گیت‌هاب
@@ -102,6 +100,45 @@ def get_github_version():
     except Exception as e:
         print(f"Error fetching github version: {e}")
         return None
+
+def compare_versions(version1, version2):
+    """
+    مقایسه دو نسخه به صورت عددی
+    returns:
+        1 اگر version1 > version2
+        0 اگر version1 == version2
+        -1 اگر version1 < version2
+    """
+    if version1 is None or version2 is None:
+        return None
+    
+    try:
+        # تبدیل نسخه‌ها به لیست اعداد
+        v1_parts = [int(x) for x in version1.split('.')]
+        v2_parts = [int(x) for x in version2.split('.')]
+        
+        # هم‌اندازه کردن لیست‌ها
+        max_len = max(len(v1_parts), len(v2_parts))
+        v1_parts.extend([0] * (max_len - len(v1_parts)))
+        v2_parts.extend([0] * (max_len - len(v2_parts)))
+        
+        # مقایسه جزء به جزء
+        for i in range(max_len):
+            if v1_parts[i] > v2_parts[i]:
+                return 1
+            elif v1_parts[i] < v2_parts[i]:
+                return -1
+        
+        return 0
+    except Exception as e:
+        print(f"Error comparing versions: {e}")
+        # اگر خطایی رخ داد، مقایسه رشته‌ای انجام بده
+        if version1 > version2:
+            return 1
+        elif version1 < version2:
+            return -1
+        else:
+            return 0
 
 def download_and_replace_files(progress_callback=None):
     """دانلود تمام فایل‌های ریپوزیتوری و جایگزینی با فایل‌های فعلی"""
@@ -203,19 +240,33 @@ def get_repo_info(repo_name):
     except Exception as e:
         print(f"Error fetching repo info: {e}")
         return None
-
-def compare_versions():
-    """مقایسه نسخه محلی با نسخه گیت‌هاب"""
+def compare_versions_info():
+    """مقایسه نسخه محلی با نسخه گیت‌هاب با استفاده از مقایسه عددی"""
+    
+    
     local_version = get_current_version()
     github_version = get_github_version()
+    
+    if local_version is None or github_version is None:
+        return {
+            'local': local_version,
+            'github': github_version,
+            'is_up_to_date': False,
+            'update_available': False,
+            'needs_downgrade': False,
+            'comparison_result': None
+        }
+    
+    comparison = compare_versions(github_version, local_version)
     
     return {
         'local': local_version,
         'github': github_version,
-        'is_up_to_date': local_version == github_version,
-        'update_available': local_version != github_version and github_version is not None
+        'is_up_to_date': comparison == 0,
+        'update_available': comparison > 0,
+        'needs_downgrade': comparison < 0,
+        'comparison_result': comparison
     }
-
 def restart_program():
     """بستن برنامه فعلی و راه‌اندازی مجدد آن"""
     try:

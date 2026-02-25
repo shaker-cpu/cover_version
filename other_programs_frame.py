@@ -1,5 +1,4 @@
 # _____________________________ other_programs_frame.py _____________________________
-
 from customtkinter import *
 import webbrowser
 from tkinter.messagebox import showinfo
@@ -15,6 +14,7 @@ class OtherProgramsFrame(CTkFrame):
         self.show_frame = show_frame_callback
         self.repos_list = []
         
+        # عنوان صفحه
         title_label = CTkLabel(
             self,
             text=get_text('other_programs_title'),
@@ -23,6 +23,7 @@ class OtherProgramsFrame(CTkFrame):
         )
         title_label.pack(pady=(30, 20))
         
+        # دکمه بازگشت
         back_btn = CTkButton(
             self,
             text=get_text('back'),
@@ -35,6 +36,7 @@ class OtherProgramsFrame(CTkFrame):
         back_btn.place(x=10, y=10)
         all_buttons.append(back_btn)
         
+        # فریم برای نمایش ریپوزیتوری‌ها
         self.repos_frame = CTkScrollableFrame(
             self,
             width=600, height=400,
@@ -42,6 +44,7 @@ class OtherProgramsFrame(CTkFrame):
         )
         self.repos_frame.pack(pady=20, padx=20, fill='both', expand=True)
         
+        # پیام وضعیت
         self.status_label = CTkLabel(
             self.repos_frame,
             text=get_text('loading_repos'),
@@ -50,6 +53,7 @@ class OtherProgramsFrame(CTkFrame):
         )
         self.status_label.pack(pady=50)
         
+        # دکمه بررسی مجدد
         self.refresh_btn = CTkButton(
             self,
             text=get_text('refresh'),
@@ -62,25 +66,34 @@ class OtherProgramsFrame(CTkFrame):
         self.refresh_btn.pack(pady=10)
         all_buttons.append(self.refresh_btn)
         
+        # بارگذاری اطلاعات در thread جداگانه
         self.load_repos_thread()
     
     def load_repos_thread(self):
+        """بارگذاری ریپوزیتوری‌ها در thread جداگانه"""
         self.status_label.configure(text=get_text('loading_repos'))
         self.status_label.pack(pady=50)
         
+        # پاک کردن ویجت‌های قبلی
         for widget in self.repos_frame.winfo_children():
             if widget != self.status_label:
                 widget.destroy()
         
+        # اجرای thread
         thread = threading.Thread(target=self.load_repos)
         thread.daemon = True
         thread.start()
     
     def load_repos(self):
+        """بارگذاری لیست ریپوزیتوری‌ها (اجرا در thread)"""
         repos = get_github_repos()
-        self.after(0, self.display_repos, repos)
+        
+        # استفاده از after_idle برای به‌روزرسانی در thread اصلی
+        root = self.winfo_toplevel()
+        root.after_idle(lambda: self.display_repos(repos))
     
     def display_repos(self, repos):
+        """نمایش ریپوزیتوری‌ها در صفحه (اجرا در thread اصلی)"""
         self.status_label.pack_forget()
         
         if repos is None:
@@ -103,10 +116,12 @@ class OtherProgramsFrame(CTkFrame):
             empty_label.pack(pady=50)
             return
         
+        # نمایش هر ریپوزیتوری
         for i, repo in enumerate(repos):
             self.create_repo_widget(repo, i)
     
     def create_repo_widget(self, repo, index):
+        """ایجاد ویجت برای نمایش یک ریپوزیتوری"""
         repo_frame = CTkFrame(
             self.repos_frame,
             fg_color='gray17',
@@ -116,6 +131,7 @@ class OtherProgramsFrame(CTkFrame):
         )
         repo_frame.pack(fill='x', pady=5, padx=10)
         
+        # نام ریپوزیتوری
         name_label = CTkLabel(
             repo_frame,
             text=repo['name'],
@@ -125,6 +141,7 @@ class OtherProgramsFrame(CTkFrame):
         )
         name_label.pack(anchor='w', padx=10, pady=(5, 0))
         
+        # توضیحات
         description = repo['description'] or get_text('no_description')
         desc_label = CTkLabel(
             repo_frame,
@@ -136,9 +153,11 @@ class OtherProgramsFrame(CTkFrame):
         )
         desc_label.pack(anchor='w', padx=10, pady=(0, 5))
         
+        # فریم برای دکمه‌ها
         btn_frame = CTkFrame(repo_frame, fg_color='transparent')
         btn_frame.pack(anchor='e', padx=10, pady=5)
         
+        # دکمه مشاهده در گیت‌هاب
         view_btn = CTkButton(
             btn_frame,
             text=get_text('view_on_github'),
@@ -151,6 +170,7 @@ class OtherProgramsFrame(CTkFrame):
         view_btn.pack(side='right', padx=5)
         all_buttons.append(view_btn)
         
+        # دکمه اطلاعات بیشتر
         info_btn = CTkButton(
             btn_frame,
             text=get_text('more_info'),
@@ -164,6 +184,7 @@ class OtherProgramsFrame(CTkFrame):
         all_buttons.append(info_btn)
     
     def show_repo_info(self, repo):
+        """نمایش اطلاعات بیشتر ریپوزیتوری"""
         info_text = f"""
 {get_text('description')}: {repo['description'] or get_text('no_description')}
 {get_text('language_colon')}: {repo['language'] or get_text('unknown')}

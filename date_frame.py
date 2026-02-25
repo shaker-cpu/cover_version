@@ -17,7 +17,7 @@ def create_date_frame(window_choose_date, ent_date, show_frame_callback):
     month = today.month
     end_year = today.year
     years = get_years_range()
-    months = get_months()
+    months = get_months()  # این تابع الان بر اساس زبان فعلی کار می‌کند
 
     selected_year = StringVar(value=end_year)
     selected_month = StringVar(value=months[month - 1])
@@ -42,7 +42,6 @@ def create_date_frame(window_choose_date, ent_date, show_frame_callback):
     def change_year(choice):
         global selected_year_get, selected_month_get
         selected_year_get = choice
-        from languages import get_text
         lbl_date.configure(text=f'{get_text("selected_date")}\n{selected_month_get} {selected_year_get}')
 
     cmb_years = CTkComboBox(
@@ -75,7 +74,6 @@ def create_date_frame(window_choose_date, ent_date, show_frame_callback):
     def change_month(choice):
         global selected_year_get, selected_month_get
         selected_month_get = choice
-        from languages import get_text
         lbl_date.configure(text=f'{get_text("selected_date")}\n{selected_month_get} {selected_year_get}')
 
     cmb_months = CTkComboBox(

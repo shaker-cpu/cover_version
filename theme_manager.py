@@ -1,9 +1,10 @@
 # _____________________________ theme_manager.py _____________________________
+
 from customtkinter import *
 from tkinter import colorchooser
 from PIL import Image
 import os
-from constants import all_buttons, all_entry, all_combo_box, all_check_box, all_textbox, colors, here, color_buttons
+from constants import all_buttons, all_entry, all_combo_box, all_check_box, all_textbox, all_label, colors, here, color_buttons
 from languages import get_text, set_language, get_language_name
 
 # لیست سراسری برای نگهداری رادیو باتن‌ها
@@ -36,11 +37,6 @@ def change_color_button(color_code):
             btn.configure(fg_color=color_code)
         except:
             pass
-    for Ent in all_entry:
-        try:
-            Ent.configure(fg_color=color_code)
-        except:
-            pass
     
     for entry in all_entry:
         try:
@@ -57,6 +53,7 @@ def change_color_button(color_code):
     for combo in all_combo_box:
         try:
             combo.configure(border_color=color_code)
+            combo.configure(button_color=color_code)
         except:
             pass
     
@@ -97,13 +94,6 @@ def change_mode(window, controller_var, window_theme):
                     pass
             
             change_color_button(controller_var.get())
-            
-            for widget in window_theme.winfo_children():
-                if isinstance(widget, CTkRadioButton):
-                    try:
-                        widget.configure(bg_color=widget.cget('value'))
-                    except:
-                        pass
     except:
         pass
 
@@ -121,7 +111,6 @@ def change_language(choice):
     lang_code = lang_map.get(choice, 'persian')
     set_language(lang_code)
     
-    # به‌روزرسانی همه متن‌ها با بازسازی کامل
     if update_all_texts_callback:
         update_all_texts_callback()
 
@@ -130,53 +119,83 @@ def create_theme_buttons(window_theme, controller_var):
     global radio_buttons_list
     radio_buttons_list = []
     
-    # تنظیم مقدار اولیه controller_var به رنگ فعلی
     controller_var.set(current_button_color)
     
+    # عنوان صفحه تم (حذف شد)
+    # توضیحات (حذف شد)
+    
+    # ایجاد رادیو باتن‌های رنگی - بالاتر برده شده (y=200)
     for i, color in enumerate(colors):
-        radio = CTkRadioButton(
+        radio_frame = CTkFrame(
             window_theme,
-            width=80, height=50,
-            text=' ', value=color,
+            width=80,
+            height=50,
+            fg_color=color,
+            corner_radius=5
+        )
+        radio_frame.place(x=75 + (i % 4) * 150, y=200 + (i // 4) * 100)  # y از 250 به 200 تغییر کرد
+        radio_frame.pack_propagate(False)
+        
+        radio = CTkRadioButton(
+            radio_frame,
+            width=70, height=40,
+            text='', 
+            value=color,
             variable=controller_var,
-            bg_color=color,
-            border_width_checked=6,
-            border_width_unchecked=2,
+            fg_color='white',  # رنگ دکمه داخلی سفید ثابت
+            border_color='gray',
+            border_width_checked=3,
+            border_width_unchecked=1,
+            hover_color=color,
+            bg_color='transparent',
             command=lambda c=color: change_color_button(c)
         )
-        
-        radio.place(x=75 + (i % 4) * 150, y=300 + (i // 4) * 100)
+        radio.pack(expand=True)
         radio_buttons_list.append(radio)
     
+    # دکمه انتخاب رنگ پس زمینه
     btn_mode = CTkButton(
         window_theme, 
         text=get_text('background_color'),
         corner_radius=5,
+        width=200,
+        height=40,
+        fg_color=current_button_color,
+        hover_color='gray',
+        font=CTkFont('B Titr', 16),
         command=lambda: change_mode(main_window, controller_var, window_theme)
     )
     btn_mode.pack(pady=20)
+    all_buttons.append(btn_mode)
     
     # ========== کامبوباکس انتخاب زبان ==========
+    lang_frame = CTkFrame(window_theme, fg_color='transparent')
+    lang_frame.pack(pady=20)
+    
     lang_label = CTkLabel(
-        window_theme,
+        lang_frame,
         text=get_text('language') + ':',
-        font=CTkFont('B Titr', 20)
+        font=CTkFont('B Titr', 18),
+        text_color='white'
     )
-    lang_label.pack(pady=(20, 5))
+    lang_label.pack(side='left', padx=10)
+    all_label.append(lang_label)
     
     languages_list = ['فارسی', 'English', 'العربية', '中文', 'Русский', 'Español']
     lang_combo = CTkComboBox(
-        window_theme,
+        lang_frame,
         values=languages_list,
         state='readonly',
         border_width=2,
-        border_color=current_button_color,  # استفاده از رنگ فعلی
-        dropdown_font=CTkFont('B Titr', 15),
-        command=change_language,
-        width=200
+        border_color=current_button_color,
+        button_color=current_button_color,
+        button_hover_color='gray',
+        dropdown_font=CTkFont('B Titr', 14),
+        font=CTkFont('B Titr', 14),
+        width=200,
+        command=change_language
     )
     
-    # تشخیص زبان فعلی
     from languages import current_language
     lang_display_map = {
         'persian': 'فارسی',
@@ -187,8 +206,10 @@ def create_theme_buttons(window_theme, controller_var):
         'spanish': 'Español'
     }
     lang_combo.set(lang_display_map.get(current_language, 'فارسی'))
-    lang_combo.pack(pady=10)
-
+    lang_combo.pack(side='left', padx=10)
+    all_combo_box.append(lang_combo)
+    
+    # ========== دکمه انتخاب رنگ سفارشی ==========
     try:
         image_path = f'{here}/color_picker.png'
         if os.path.exists(image_path):
@@ -202,7 +223,7 @@ def create_theme_buttons(window_theme, controller_var):
                 size=one_third_size
             )
             
-            btn_holly_collor = CTkButton(
+            btn_holly_color = CTkButton(
                 window_theme,
                 image=ctk_image,
                 text='',
@@ -210,10 +231,13 @@ def create_theme_buttons(window_theme, controller_var):
                 hover=False,
                 border_width=0,
                 corner_radius=0,
+                width=50,
+                height=50,
                 command=lambda: holly_color(controller_var)
             )
-            btn_holly_collor.place(x=275, y=600)
+            btn_holly_color.place(x=275, y=600)
+            
     except Exception as e:
-        print(f'{get_text("language")} : {e}')
+        print(f'خطا در بارگذاری تصویر: {e}')
     
     return radio_buttons_list
