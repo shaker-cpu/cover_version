@@ -3,6 +3,8 @@ import requests
 import os
 import shutil
 import zipfile
+import subprocess
+import sys
 from tkinter.messagebox import showinfo, showerror
 from constants import here
 from languages import get_text
@@ -45,11 +47,9 @@ EXCLUDED_FILES = [
 
 def should_exclude_file(filename):
     """بررسی اینکه آیا فایل باید نادیده گرفته شود"""
-    # بررسی نام فایل
     if filename in EXCLUDED_FILES:
         return True
     
-    # بررسی پسوندها
     for pattern in EXCLUDED_FILES:
         if pattern.startswith('*') and filename.endswith(pattern[1:]):
             return True
@@ -68,7 +68,6 @@ def get_github_repos():
         
         if response.status_code == 200:
             repos = response.json()
-            # فیلتر کردن ریپوزیتوری فعلی
             other_repos = [repo for repo in repos if repo['name'] != REPO_NAME]
             return other_repos
         else:
@@ -106,7 +105,6 @@ def get_github_version():
 def download_and_replace_files(progress_callback=None):
     """دانلود تمام فایل‌های ریپوزیتوری و جایگزینی با فایل‌های فعلی"""
     try:
-        # دریافت اطلاعات ریپوزیتوری
         api_url = f'https://api.github.com/repos/{GITHUB_USERNAME}/{REPO_NAME}/zipball/main'
         response = requests.get(api_url, stream=True, timeout=30)
         
@@ -114,11 +112,9 @@ def download_and_replace_files(progress_callback=None):
             showerror(get_text('erorr'), "خطا در دانلود فایل‌ها")
             return False
         
-        # ایجاد پوشه موقت
         with tempfile.TemporaryDirectory() as temp_dir:
             zip_path = os.path.join(temp_dir, 'update.zip')
             
-            # دانلود فایل زیپ
             total_size = int(response.headers.get('content-length', 0))
             downloaded = 0
             
@@ -131,11 +127,9 @@ def download_and_replace_files(progress_callback=None):
                             progress = (downloaded / total_size) * 100
                             progress_callback(progress)
             
-            # استخراج فایل‌ها
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                 zip_ref.extractall(temp_dir)
             
-            # پیدا کردن پوشه استخراج شده
             extracted_dirs = [d for d in os.listdir(temp_dir) 
                             if os.path.isdir(os.path.join(temp_dir, d))]
             source_dir = None
@@ -148,29 +142,22 @@ def download_and_replace_files(progress_callback=None):
                 showerror(get_text('erorr'), "خطا در استخراج فایل‌ها")
                 return False
             
-            # کپی فایل‌ها (به جز فایل‌ها و پوشه‌های استثنا)
             copied_files_count = 0
             skipped_files_count = 0
             
             for root, dirs, files in os.walk(source_dir):
-                # حذف پوشه‌های استثنا از لیست برای جلوگیری از ورود به آنها
                 dirs[:] = [d for d in dirs if not should_exclude_dir(d)]
                 
-                # محاسبه مسیر نسبی
                 rel_path = os.path.relpath(root, source_dir)
                 
-                # اگر مسیر نسبی شامل پوشه‌های استثنا باشد، رد کن
                 if any(should_exclude_dir(part) for part in rel_path.split(os.sep)):
                     continue
                 
-                # ایجاد پوشه مقصد
                 dest_dir = os.path.join(here, rel_path) if rel_path != '.' else here
                 if not os.path.exists(dest_dir) and rel_path != '.':
                     os.makedirs(dest_dir, exist_ok=True)
                 
-                # کپی فایل‌ها
                 for file in files:
-                    # بررسی اینکه آیا فایل باید نادیده گرفته شود
                     if should_exclude_file(file):
                         skipped_files_count += 1
                         continue
@@ -185,7 +172,6 @@ def download_and_replace_files(progress_callback=None):
                         print(f"Error copying {file}: {e}")
                         skipped_files_count += 1
             
-            # به‌روزرسانی فایل نسخه (مهم: این کار باید حتماً انجام شود)
             github_version = get_github_version()
             if github_version:
                 try:
@@ -228,3 +214,16 @@ def compare_versions():
         'is_up_to_date': local_version == github_version,
         'update_available': local_version != github_version and github_version is not None
     }
+
+def restart_program():
+    """بستن برنامه فعلی و راه‌اندازی مجدد آن"""
+    try:
+        python = sys.executable
+        script = os.path.join(here, 'main.py')
+        
+        subprocess.Popen([python, script])
+        
+        sys.exit(0)
+    except Exception as e:
+        print(f"Error restarting program: {e}")
+        showerror(get_text('erorr'), f"خطا در راه‌اندازی مجدد: {str(e)}")

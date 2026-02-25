@@ -213,10 +213,9 @@ def create_main_buttons():
     btn_Books_t.place(x=350, y=370)
     
     # ========== دکمه‌های جدید ==========
-    # دکمه برنامه‌های دیگر
     btn_other_programs = widget_instance.CTk_Button(
         window1,
-        text="📦 برنامه‌های دیگر",
+        text=get_text('other_programs'),
         corner_radius=5,
         bg_color='transparent',
         hover_color='gray',
@@ -226,10 +225,9 @@ def create_main_buttons():
     )
     btn_other_programs.place(x=120, y=570)
     
-    # دکمه بررسی به‌روزرسانی
     btn_check_update = widget_instance.CTk_Button(
         window1,
-        text="🔄 بررسی به‌روزرسانی",
+        text="🔄 " + get_text('check_update'),
         corner_radius=5,
         bg_color='transparent',
         hover_color='gray',
