@@ -2,47 +2,75 @@
 
 languages = {
     'persian': {
+        # ========== عناوین اصلی ==========
         'app_title': 'برنامه ساخت جلد',
         'theme_button': '🎨 تم ها',
         'history_button': 'تاریخچه',
-        'guide_button': ' راهنما',
+        'guide_button': 'راهنما',
         'language': 'زبان',
-        "erorr": "خطا",
+        'error': 'خطا',
+        'warning': 'هشدار',
+        'success': 'موفقیت',
+        'info': 'اطلاعات',
+        'confirm': 'تأیید',
+        'cancel': 'انصراف',
+        'apply': 'اعمال',
+        'save': 'ذخیره',
+        'delete': 'حذف',
+        'edit': 'ویرایش',
+        'close': 'بستن',
+        'back': '🔙 بازگشت',
+        'next': 'بعدی',
+        'previous': 'قبلی',
+        'refresh': 'بروزرسانی',
+        'reset': 'بازنشانی',
+        'search': 'جستجو',
+        'filter': 'فیلتر',
+        'sort': 'مرتب‌سازی',
+        'settings': 'تنظیمات',
+        
+        # ========== دکمه‌های اصلی ==========
         'about_button': '📋 درباره ما',
         'about_title': 'درباره برنامه',
-        'about_message': '''📱 برنامه ساخت جلد
-
-توسعه دهندگان : آقایان مقیسه و شاکر
-
-📅 نسخه: {}
-📧 پشتیبانی: support@example.com
-📞 تلفن: ۰۲۱-۱۲۳۴۵۶۷۸
-
-⭐ این برنامه برای ساخت انواع جلد طراحی شده است.
-❤️ با تشکر از انتخاب شما''',
         'other_programs': '📦 برنامه‌های دیگر',
+        'check_update': '🔄 بررسی به‌روزرسانی',
+        
+        # ========== پیام‌ها ==========
+        'welcome_message': 'به برنامه ساخت جلد خوش آمدید',
+        'about_message': '📱 برنامه ساخت جلد\n\nتوسعه دهندگان: مقیسه و شاکر\n📅 نسخه: {}\n📧 پشتیبانی: support@example.com',
+        'about_us': '📱 برنامه ساخت جلد\n\nتوسعه دهندگان: مقیسه و شاکر\n📅 نسخه: {}\n📧 پشتیبانی: support@example.com',
+        
+        # ========== صفحه برنامه‌های دیگر ==========
         'other_programs_title': 'سایر برنامه‌های من',
         'loading_repos': 'در حال بارگذاری اطلاعات...',
         'github_error': 'خطا در ارتباط با گیت‌هاب',
         'no_other_programs': 'هیچ برنامه دیگری یافت نشد',
         'view_on_github': 'مشاهده در گیت‌هاب',
         'more_info': 'اطلاعات بیشتر',
-        'refresh': 'بررسی مجدد',
         'description': 'توضیحات',
         'no_description': 'بدون توضیحات',
         'unknown': 'نامشخص',
-        'language_colon': 'زبان',
+        'language_colon': 'زبان:',
         'stars': 'ستاره‌ها',
         'created_at': 'تاریخ ایجاد',
         'updated_at': 'آخرین به‌روزرسانی',
         'link': 'لینک',
+        'download': 'دانلود',
+        'download_error': 'خطا در دانلود',
+        'download_url': 'آدرس دانلود',
+        'size': 'حجم',
+        'type': 'نوع',
+        'file_name_repo': 'نام فایل: {}',
+        'repo_files': 'فایل‌های ریپوزیتوری',
+        'select_repo': 'انتخاب ریپوزیتوری',
+        
+        # ========== صفحه به‌روزرسانی ==========
         'update_title': 'بررسی به‌روزرسانی',
         'current_version_checking': 'نسخه فعلی: در حال بررسی...',
         'latest_version_checking': 'آخرین نسخه: در حال بررسی...',
         'current_version': 'نسخه فعلی',
         'current_version_unknown': 'نسخه فعلی: نامشخص',
         'latest_version': 'آخرین نسخه',
-        'check_update': 'بررسی به‌روزرسانی',
         'check_again': 'بررسی مجدد',
         'start_update': 'شروع به‌روزرسانی',
         'checking': 'در حال بررسی...',
@@ -63,146 +91,225 @@ languages = {
         'update_error': 'خطا در به‌روزرسانی',
         'restart_error': 'خطا در راه‌اندازی مجدد',
         'update': 'به‌روزرسانی',
-        'dissertation_cover': 'ساخت جلد\n پایان نامه',
-        'notebook_cover': 'ساخت جلد\n  دفتر مدارس یا\n  قراردادها',
-        'book_cover': 'ساخت جلد\n  کتاب ها',
-        'gilded_book_cover': 'ساخت جلد\n  کتاب های \n  تذهیب دار',
+        'version': 'نسخه',
+        
+        # ========== دکمه‌های ساخت جلد ==========
+        'dissertation_cover': 'ساخت جلد\nپایان نامه',
+        'notebook_cover': 'ساخت جلد\nدفتر مدارس یا\nقراردادها',
+        'book_cover': 'ساخت جلد\nکتاب ها',
+        'gilded_book_cover': 'ساخت جلد\nکتاب های\nتذهیب دار',
+        
+        # ========== صفحه تم ==========
         'theme_guide_title': 'راهنمای تنظیم تم برنامه',
         'theme_guide_message': 'یکی از رنگ ها را انتخاب کنید تا رنگ تمام دکمه های برنامه عوض شود',
         'background_color': 'رنگ پس زمینه',
-        'history_guide_title': 'صفحه تاریخچه',
-        'history_guide_message': 'در این صفحه می‌توانید آخرین فایل‌های ساخته شده را مشاهده کنید',
+        'select_color': 'انتخاب رنگ',
+        'custom_color': 'رنگ سفارشی',
+        'default_colors': 'رنگ‌های پیش‌فرض',
+        
+        # ========== صفحه تاریخچه ==========
+        'history_guide_title': 'راهنمای صفحه تاریخچه',
+        'history_guide_message': 'در این صفحه شما می توانید آخرین ۵ فایل ساخته شده را ببینید',
+        'empty_history': '📭 تاریخچه خالی است',
         'clear_all': '🧹 پاک کردن همه',
         'change_path': '📁 تغییر مسیر',
-        'empty_history': '📭 تاریخچه خالی است',
-        'delete_confirm': 'آیا از حذف این مورد مطمئن هستید؟',
+        'delete_confirm': 'آیا از حذف {} مطمئن هستید؟',
         'clear_all_confirm': 'آیا از پاک کردن کامل تاریخچه مطمئن هستید؟',
-        'delete_success': 'مورد با موفقیت حذف شد',
-        'clear_all_success': 'تاریخچه با موفقیت پاک شد',
         'save_file': 'ذخیره فایل',
-        'file_saved': 'فایل با موفقیت ذخیره شد',
-        'file_saved_path': 'فایل در مسیر زیر ذخیره شد:',
-        'info_title': 'اطلاعات فایل',
+        'show_info': 'نمایش اطلاعات',
+        'open_file': 'باز کردن فایل',
+        'open_location': 'باز کردن محل فایل',
+        'saved_success': 'فایل با موفقیت ذخیره شد',
+        'info_title': 'اطلاعات {}',
         'file_name': 'نام فایل',
         'creation_date': 'تاریخ ایجاد',
         'original_path': 'مسیر اصلی',
-        'build_info': 'اطلاعات ساخت',
+        'construction_info': 'اطلاعات ساخت',
         'title': 'عنوان',
         'author': 'نویسنده',
-        'spine_value_info': 'مقدار عطف',
+        'date': 'تاریخ',
+        'spine_value': 'عطف',
         'page_number': 'شماره صفحه',
-        'latin_page': 'صفحه لاتین',
+        'has_latin_page': 'صفحه لاتین',
         'has': 'دارد',
-        'does_not_have': 'ندارد',
-        'logo_type': 'نوع لوگو',
+        'has_not': 'ندارد',
+        'logo_bw': 'لوگو',
         'black_white': 'سیاه و سفید',
         'colored': 'رنگی',
         'logo_shape': 'شکل لوگو',
         'circular': 'دایره‌ای',
         'non_circular': 'غیر دایره‌ای',
-        'mm': 'میلی‌متر',
+        
+        # ========== صفحه راهنمای پایان‌نامه ==========
         'step1': 'مرحله ۱',
         'step2': 'مرحله ۲',
         'step3': 'مرحله ۳',
         'step4': 'مرحله ۴',
-        'help_plan_1': 'راهنمای مرحله اول',
-        'help_plan_2': 'راهنمای مرحله دوم',
-        'help_plan_3': 'راهنمای مرحله سوم',
-        'help_plan_4': 'راهنمای مرحله چهارم',
-        'spine_value': ':(mm)مقدار عطف ',
-        'title_text': ':عنوان ',
-        'author_name': ':نام نویسنده ',
-        'date': ':تاریخ ',
-        'title_page_number': ': شماره صفحه عنوان ',
-        'output_file_name': ':نام فایل خروجی ',
-        'select_file': 'انتخاب فایل ',
-        'save_location': 'محل ذخیره ',
+        'help_plan_1': 'راهنمای مرحله اول - اطلاعات پایه را وارد کنید',
+        'help_plan_2': 'راهنمای مرحله دوم - فایل مورد نظر را انتخاب کنید',
+        'help_plan_3': 'راهنمای مرحله سوم - محل ذخیره را انتخاب کنید',
+        'help_plan_4': 'راهنمای مرحله چهارم - تنظیمات نهایی را اعمال کنید',
+        
+        # ========== صفحه ساخت جلد پایان‌نامه ==========
+        'spine_value_placeholder': 'مقدار عطف (mm):',
+        'title_text': 'عنوان:',
+        'author_name': 'نام نویسنده:',
+        'date_placeholder': 'تاریخ:',
+        'title_page_number': 'شماره صفحه عنوان:',
+        'output_file_name': 'نام فایل خروجی:',
+        'select_file': 'انتخاب فایل',
+        'save_location': 'محل ذخیره',
         'no_file_selected': 'فایلی انتخاب نشده است',
         'no_folder_selected': 'پوشه ای انتخاب نشده است',
         'no_logo_selected': 'لوگو انتخاب نشده است',
         'file_selected': 'فایل انتخاب شد',
         'folder_selected': 'پوشه انتخاب شد',
         'logo_selected': 'لوگو انتخاب شد',
-        'start_making_message': 'فرآیند ساخت جلد آغاز شد...',
-        'has_latin_page': 'پایان نامه صفحه لاتین دارد',
+        'load_logo': 'بارگذاری لوگو',
+        'start_making': 'شروع ساخت',
+        'refresh_page': 'پاکسازی صفحه',
+        
+        # ========== چک باکس‌ها ==========
+        'has_latin_page_text': 'پایان نامه صفحه لاتین دارد',
         'has_latin_page_on': 'دارای صفحه لاتین',
         'has_latin_page_off': 'بدون صفحه لاتین',
-        'logo_black_white': 'لوگوی پایان نامه سیاه و سفید است',
+        'logo_black_white_text': 'لوگوی پایان نامه سیاه و سفید است',
         'logo_black_white_on': 'سیاه و سفید',
         'logo_black_white_off': 'رنگی',
-        'logo_circular': 'لوگوی پایان نامه دایره ای است',
+        'logo_circular_text': 'لوگوی پایان نامه دایره ای است',
         'logo_circular_on': 'دایره ای',
         'logo_circular_off': 'غیر دایره ای',
-        'refresh': 'پاکسازی صفحه',
-        'start_making': 'شروع ساخت',
-        'load_logo': 'بارگذاری لوگو',
-        'back': '🔙 بازگشت',
-        'cancel': 'انصراف',
-        'apply': 'اعمال',
+        
+        # ========== صفحه انتخاب تاریخ ==========
         'select_year': 'انتخاب سال',
         'select_month': 'انتخاب ماه',
-        'selected_date': ':تاریخ انتخاب شده ',
+        'selected_date': 'تاریخ انتخاب شده:',
+        'year': 'سال',
+        'month': 'ماه',
+        'day': 'روز',
+        'today': 'امروز',
+        
+        # ========== ماه‌ها ==========
         'months': ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
                    'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+        
+        # ========== شماره صفحات ==========
         'pages': ['۱ صفحه', '۲ صفحه', '۳ صفحه', '۴ صفحه', '۵ صفحه'],
-        'welcome_message': '''بسم الله الرحمن الرحیم
-سلام به برنامه ساخت جلد خوش آمدید
-برای ساخت هر نوع جلد روی کلید مربوطه کلیک نمائید''',
-        'about_us': '''📱 برنامه ساخت جلد
-
-توسعه دهندگان : آقایان مقیسه و شاکر
-
-📅 نسخه: {}
-📧 پشتیبانی: support@example.com
-📞 تلفن: ۰۲۱-۱۲۳۴۵۶۷۸
-
-⭐ این برنامه برای ساخت انواع جلد طراحی شده است.
-
-❤️ با تشکر از انتخاب شما''',
+        
+        # ========== فایل‌ها و پوشه‌ها ==========
+        'select_folder': 'انتخاب پوشه',
+        'select_image': 'انتخاب تصویر',
+        'select_pdf': 'انتخاب فایل PDF',
+        'downloading': 'در حال دانلود...',
+        'browsing': 'در حال مرور...',
+        'file': 'فایل',
+        'folder': 'پوشه',
+        'image': 'تصویر',
+        'pdf': 'PDF',
+        'all_files': 'همه فایل‌ها',
+        
+        # ========== اعداد و واحدها ==========
+        'mm': 'میلی‌متر',
+        'cm': 'سانتی‌متر',
+        'inch': 'اینچ',
+        'px': 'پیکسل',
+        'percent': 'درصد',
+        
+        # ========== وضعیت‌ها ==========
+        'enabled': 'فعال',
+        'disabled': 'غیرفعال',
+        'on': 'روشن',
+        'off': 'خاموش',
+        'yes': 'بله',
+        'no': 'خیر',
+        'ok': 'تأیید',
+        
+        # ========== خطاها ==========
+        'error_occurred': 'خطایی رخ داد',
+        'network_error': 'خطای شبکه',
+        'file_not_found': 'فایل یافت نشد',
+        'access_denied': 'دسترسی غیرمجاز',
+        'disk_full': 'فضای دیسک پر است',
+        'invalid_input': 'ورودی نامعتبر',
+        
+        # ========== راهنما ==========
+        'help': 'کمک',
+        'help_topic': 'موضوع راهنما',
+        'help_content': 'محتوای راهنما',
+        'help_index': 'فهرست راهنما',
+        'help_search': 'جستجوی راهنما',
     },
     
     'english': {
+        # ========== Main Titles ==========
         'app_title': 'Cover Builder',
         'theme_button': '🎨 Themes',
         'history_button': 'History',
-        'guide_button': ' Guide',
+        'guide_button': 'Guide',
         'language': 'Language',
-        "erorr": 'error',
+        'error': 'Error',
+        'warning': 'Warning',
+        'success': 'Success',
+        'info': 'Info',
+        'confirm': 'Confirm',
+        'cancel': 'Cancel',
+        'apply': 'Apply',
+        'save': 'Save',
+        'delete': 'Delete',
+        'edit': 'Edit',
+        'close': 'Close',
+        'back': '🔙 Back',
+        'next': 'Next',
+        'previous': 'Previous',
+        'refresh': 'Refresh',
+        'reset': 'Reset',
+        'search': 'Search',
+        'filter': 'Filter',
+        'sort': 'Sort',
+        'settings': 'Settings',
+        
+        # ========== Main Buttons ==========
         'about_button': '📋 About Us',
         'about_title': 'About App',
-        'about_message': '''📱 Cover Builder
-
-Developers: Moghiseh & Shaker
-
-📅 Version: {}
-📧 Support: support@example.com
-📞 Phone: +98-21-12345678
-
-⭐ Designed for creating various covers
-❤️ Thank you for choosing us''',
         'other_programs': '📦 Other Programs',
+        'check_update': '🔄 Check Update',
+        
+        # ========== Messages ==========
+        'welcome_message': 'Welcome to Cover Builder',
+        'about_message': '📱 Cover Builder\n\nDevelopers: Moghiseh & Shaker\n📅 Version: {}\n📧 Support: support@example.com',
+        'about_us': '📱 Cover Builder\n\nDevelopers: Moghiseh & Shaker\n📅 Version: {}\n📧 Support: support@example.com',
+        
+        # ========== Other Programs Page ==========
         'other_programs_title': 'My Other Programs',
         'loading_repos': 'Loading information...',
         'github_error': 'Error connecting to GitHub',
         'no_other_programs': 'No other programs found',
         'view_on_github': 'View on GitHub',
         'more_info': 'More Info',
-        'refresh': 'Refresh',
         'description': 'Description',
         'no_description': 'No description',
         'unknown': 'Unknown',
-        'language_colon': 'Language',
+        'language_colon': 'Language:',
         'stars': 'Stars',
         'created_at': 'Created at',
         'updated_at': 'Updated at',
         'link': 'Link',
+        'download': 'Download',
+        'download_error': 'Download Error',
+        'download_url': 'Download URL',
+        'size': 'Size',
+        'type': 'Type',
+        'file_name_repo': 'File name: {}',
+        'repo_files': 'Repository Files',
+        'select_repo': 'Select Repository',
+        
+        # ========== Update Page ==========
         'update_title': 'Check for Updates',
         'current_version_checking': 'Current version: Checking...',
         'latest_version_checking': 'Latest version: Checking...',
         'current_version': 'Current version',
         'current_version_unknown': 'Current version: Unknown',
         'latest_version': 'Latest version',
-        'check_update': 'Check for Updates',
         'check_again': 'Check Again',
         'start_update': 'Start Update',
         'checking': 'Checking...',
@@ -223,56 +330,70 @@ Developers: Moghiseh & Shaker
         'update_error': 'Update error',
         'restart_error': 'Restart error',
         'update': 'Update',
-        'dissertation_cover': 'Dissertation\n Cover',
-        'notebook_cover': 'Notebook\n or Contract\n Cover',
-        'book_cover': 'Book\n Cover',
-        'gilded_book_cover': 'Gilded\n Book Cover',
+        'version': 'Version',
+        
+        # ========== Cover Buttons ==========
+        'dissertation_cover': 'Dissertation\nCover',
+        'notebook_cover': 'Notebook\nor Contract\nCover',
+        'book_cover': 'Book\nCover',
+        'gilded_book_cover': 'Gilded\nBook Cover',
+        
+        # ========== Theme Page ==========
         'theme_guide_title': 'Theme Settings Guide',
         'theme_guide_message': 'Select a color to change all button colors',
         'background_color': 'Background Color',
-        'history_guide_title': 'History Page',
-        'history_guide_message': 'You can see the last created files here',
+        'select_color': 'Select Color',
+        'custom_color': 'Custom Color',
+        'default_colors': 'Default Colors',
+        
+        # ========== History Page ==========
+        'history_guide_title': 'History Guide',
+        'history_guide_message': 'You can see the last 5 created files here',
+        'empty_history': '📭 History is empty',
         'clear_all': '🧹 Clear All',
         'change_path': '📁 Change Path',
-        'empty_history': '📭 History is empty',
-        'delete_confirm': 'Are you sure you want to delete this item?',
+        'delete_confirm': 'Are you sure you want to delete {}?',
         'clear_all_confirm': 'Are you sure you want to clear all history?',
-        'delete_success': 'Item deleted successfully',
-        'clear_all_success': 'History cleared successfully',
         'save_file': 'Save File',
-        'file_saved': 'File saved successfully',
-        'file_saved_path': 'File saved at:',
-        'info_title': 'File Information',
+        'show_info': 'Show Info',
+        'open_file': 'Open File',
+        'open_location': 'Open Location',
+        'saved_success': 'File saved successfully',
+        'info_title': '{} Information',
         'file_name': 'File Name',
         'creation_date': 'Creation Date',
         'original_path': 'Original Path',
-        'build_info': 'Build Information',
+        'construction_info': 'Construction Information',
         'title': 'Title',
         'author': 'Author',
-        'spine_value_info': 'Spine Value',
+        'date': 'Date',
+        'spine_value': 'Spine',
         'page_number': 'Page Number',
-        'latin_page': 'Latin Page',
+        'has_latin_page': 'Latin Page',
         'has': 'Has',
-        'does_not_have': 'Does not have',
-        'logo_type': 'Logo Type',
+        'has_not': 'Does not have',
+        'logo_bw': 'Logo',
         'black_white': 'Black & White',
         'colored': 'Colored',
         'logo_shape': 'Logo Shape',
         'circular': 'Circular',
         'non_circular': 'Non-circular',
-        'mm': 'mm',
+        
+        # ========== Dissertation Guide Page ==========
         'step1': 'Step 1',
         'step2': 'Step 2',
         'step3': 'Step 3',
         'step4': 'Step 4',
-        'help_plan_1': 'First step guide',
-        'help_plan_2': 'Second step guide',
-        'help_plan_3': 'Third step guide',
-        'help_plan_4': 'Fourth step guide',
-        'spine_value': 'Spine Value (mm):',
+        'help_plan_1': 'First step guide - Enter basic information',
+        'help_plan_2': 'Second step guide - Select the file',
+        'help_plan_3': 'Third step guide - Select save location',
+        'help_plan_4': 'Fourth step guide - Apply final settings',
+        
+        # ========== Dissertation Cover Page ==========
+        'spine_value_placeholder': 'Spine Value (mm):',
         'title_text': 'Title:',
         'author_name': 'Author Name:',
-        'date': 'Date:',
+        'date_placeholder': 'Date:',
         'title_page_number': 'Title Page Number:',
         'output_file_name': 'Output File Name:',
         'select_file': 'Select File',
@@ -283,155 +404,235 @@ Developers: Moghiseh & Shaker
         'file_selected': 'File selected',
         'folder_selected': 'Folder selected',
         'logo_selected': 'Logo selected',
-        'start_making_message': 'Cover making process started...',
-        'has_latin_page': 'Dissertation has Latin page',
+        'load_logo': 'Load Logo',
+        'start_making': 'Start Making',
+        'refresh_page': 'Refresh Page',
+        
+        # ========== Checkboxes ==========
+        'has_latin_page_text': 'Dissertation has Latin page',
         'has_latin_page_on': 'Has Latin page',
         'has_latin_page_off': 'No Latin page',
-        'logo_black_white': 'Logo is black and white',
+        'logo_black_white_text': 'Logo is black and white',
         'logo_black_white_on': 'Black and White',
         'logo_black_white_off': 'Colored',
-        'logo_circular': 'Logo is circular',
+        'logo_circular_text': 'Logo is circular',
         'logo_circular_on': 'Circular',
         'logo_circular_off': 'Non-circular',
-        'refresh': 'Refresh Page',
-        'start_making': 'Start Making',
-        'load_logo': 'Load Logo',
-        'back': '🔙 Back',
-        'cancel': 'Cancel',
-        'apply': 'Apply',
+        
+        # ========== Date Selection Page ==========
         'select_year': 'Select Year',
         'select_month': 'Select Month',
         'selected_date': 'Selected Date:',
-        'months': ['January', 'February', 'March', 'April', 'May', 'June',
-                   'July', 'August', 'September', 'October', 'November', 'December'],
+        'year': 'Year',
+        'month': 'Month',
+        'day': 'Day',
+        'today': 'Today',
+        
+        # ========== Months ==========
+        'months': ['Farvardin', 'Ordibehesht', 'Khordad', 'Tir', 'Mordad', 'Shahrivar',
+                   'Mehr', 'Aban', 'Azar', 'Dey', 'Bahman', 'Esfand'],
+        
+        # ========== Pages ==========
         'pages': ['1 Page', '2 Pages', '3 Pages', '4 Pages', '5 Pages'],
-        'welcome_message': '''Welcome to Cover Builder
-Click on any cover button to start''',
-        'about_us': '''📱 Cover Builder
-
-Developers: Moghiseh & Shaker
-
-📅 Version: {}
-📧 Support: support@example.com
-📞 Phone: +98-21-12345678
-
-⭐ Designed for creating various covers
-
-❤️ Thank you for choosing us''',
+        
+        # ========== Files and Folders ==========
+        'select_folder': 'Select Folder',
+        'select_image': 'Select Image',
+        'select_pdf': 'Select PDF File',
+        'downloading': 'Downloading...',
+        'browsing': 'Browsing...',
+        'file': 'File',
+        'folder': 'Folder',
+        'image': 'Image',
+        'pdf': 'PDF',
+        'all_files': 'All Files',
+        
+        # ========== Numbers and Units ==========
+        'mm': 'mm',
+        'cm': 'cm',
+        'inch': 'inch',
+        'px': 'px',
+        'percent': '%',
+        
+        # ========== Status ==========
+        'enabled': 'Enabled',
+        'disabled': 'Disabled',
+        'on': 'On',
+        'off': 'Off',
+        'yes': 'Yes',
+        'no': 'No',
+        'ok': 'OK',
+        
+        # ========== Errors ==========
+        'error_occurred': 'An error occurred',
+        'network_error': 'Network error',
+        'file_not_found': 'File not found',
+        'access_denied': 'Access denied',
+        'disk_full': 'Disk is full',
+        'invalid_input': 'Invalid input',
+        
+        # ========== Help ==========
+        'help': 'Help',
+        'help_topic': 'Help Topic',
+        'help_content': 'Help Content',
+        'help_index': 'Help Index',
+        'help_search': 'Help Search',
     },
     
     'arabic': {
+        # ========== عناوین اصلی ==========
         'app_title': 'بناء الغلاف',
         'theme_button': '🎨 السمات',
         'history_button': 'التاریخ',
-        'guide_button': ' الدلیل',
+        'guide_button': 'الدلیل',
         'language': 'اللغة',
-        "erorr": 'خطأ ',
+        'error': 'خطأ',
+        'warning': 'تحذیر',
+        'success': 'نجاح',
+        'info': 'معلومات',
+        'confirm': 'تأكید',
+        'cancel': 'إلغاء',
+        'apply': 'تطبیق',
+        'save': 'حفظ',
+        'delete': 'حذف',
+        'edit': 'تعدیل',
+        'close': 'إغلاق',
+        'back': '🔙 رجوع',
+        'next': 'التالي',
+        'previous': 'السابق',
+        'refresh': 'تحدیث',
+        'reset': 'إعادة تعیین',
+        'search': 'بحث',
+        'filter': 'تصفیة',
+        'sort': 'ترتیب',
+        'settings': 'إعدادات',
+        
+        # ========== أزرار رئیسیة ==========
         'about_button': '📋 معلومات عنا',
         'about_title': 'حول البرنامج',
-        'about_message': '''📱 بناء الغلاف
-
-المطورون: مقیسة و شاکر
-
-📅 الإصدار: {}
-📧 الدعم: support@example.com
-📞 الهاتف: ۹۸۲۱-۱۲۳۴۵۶۷۸+
-
-⭐ تم تصمیم هذا البرنامج لإنشاء أنواع مختلفة من الأغلفة
-❤️ شکرًا لاختیارکم لنا''',
         'other_programs': '📦 برامج أخرى',
+        'check_update': '🔄 التحقق من التحدیثات',
+        
+        # ========== رسائل ==========
+        'welcome_message': 'مرحبًا بكم في بناء الغلاف',
+        'about_message': '📱 بناء الغلاف\n\nالمطورون: مقیسة و شاکر\n📅 الإصدار: {}\n📧 الدعم: support@example.com',
+        'about_us': '📱 بناء الغلاف\n\nالمطورون: مقیسة و شاکر\n📅 الإصدار: {}\n📧 الدعم: support@example.com',
+        
+        # ========== صفحة البرامج الأخرى ==========
         'other_programs_title': 'برامجى الأخرى',
         'loading_repos': 'جاري تحميل المعلومات...',
         'github_error': 'خطأ في الاتصال بـ GitHub',
         'no_other_programs': 'لم يتم العثور على برامج أخرى',
         'view_on_github': 'عرض على GitHub',
         'more_info': 'مزيد من المعلومات',
-        'refresh': 'تحديث',
         'description': 'الوصف',
         'no_description': 'لا يوجد وصف',
         'unknown': 'غير معروف',
-        'language_colon': 'اللغة',
+        'language_colon': 'اللغة:',
         'stars': 'النجوم',
         'created_at': 'تاريخ الإنشاء',
         'updated_at': 'آخر تحديث',
         'link': 'الرابط',
-        'update_title': 'التحقق من التحديثات',
+        'download': 'تحمیل',
+        'download_error': 'خطأ في التحمیل',
+        'download_url': 'رابط التحمیل',
+        'size': 'الحجم',
+        'type': 'النوع',
+        'file_name_repo': 'اسم الملف: {}',
+        'repo_files': 'ملفات المستودع',
+        'select_repo': 'اختر المستودع',
+        
+        # ========== صفحة التحدیث ==========
+        'update_title': 'التحقق من التحدیثات',
         'current_version_checking': 'الإصدار الحالي: جاري التحقق...',
         'latest_version_checking': 'آخر إصدار: جاري التحقق...',
         'current_version': 'الإصدار الحالي',
         'current_version_unknown': 'الإصدار الحالي: غير معروف',
         'latest_version': 'آخر إصدار',
-        'check_update': 'التحقق من التحديثات',
         'check_again': 'تحقق مرة أخرى',
-        'start_update': 'بدء التحديث',
+        'start_update': 'بدء التحدیث',
         'checking': 'جاري التحقق...',
         'connecting_github': 'جاري الاتصال بـ GitHub...',
         'github_connection_error': 'خطأ في الاتصال بـ GitHub',
         'app_up_to_date': 'برنامجك محدث',
         'new_version_available': 'الإصدار الجديد {} متوفر',
-        'new_version_found': 'إصدار جديد',
-        'update_question': 'هل تريد التحديث؟',
+        'new_version_found': 'إصدار جدید',
+        'update_question': 'هل تريد التحدیث؟',
         'update_note': 'ملاحظة: لن يتم تحديث ملفات .gitignore و README.md.',
-        'updating': 'جاري التحديث...',
-        'downloading_updating': 'جاري التحميل والتحديث...',
-        'update_successful': 'تم التحديث بنجاح (الإصدار {})',
-        'update_successful_title': 'تحديث ناجح',
+        'updating': 'جاري التحدیث...',
+        'downloading_updating': 'جاري التحمیل والتحدیث...',
+        'update_successful': 'تم التحدیث بنجاح (الإصدار {})',
+        'update_successful_title': 'تحدیث ناجح',
         'update_successful_message': 'تم تحديث البرنامج بنجاح إلى الإصدار',
-        'restart_question': 'لتطبيق التغييرات، يجب إعادة تشغيل البرنامج. هل تريد إعادة التشغيل الآن؟',
-        'restarting': 'جاري إعادة التشغيل...',
-        'update_error': 'خطأ في التحديث',
-        'restart_error': 'خطأ في إعادة التشغيل',
-        'update': 'تحديث',
-        'dissertation_cover': 'بناء غلاف\n الرسالة',
-        'notebook_cover': 'بناء غلاف\n دفتر المدرسة أو\n العقود',
-        'book_cover': 'بناء غلاف\n الکتب',
-        'gilded_book_cover': 'بناء غلاف\n الکتب المذهبة',
+        'restart_question': 'لتطبیق التغییرات، یجب إعادة تشغیل البرنامج. هل تريد إعادة التشغیل الآن؟',
+        'restarting': 'جاري إعادة التشغیل...',
+        'update_error': 'خطأ في التحدیث',
+        'restart_error': 'خطأ في إعادة التشغیل',
+        'update': 'تحدیث',
+        'version': 'الإصدار',
+        
+        # ========== أزرار بناء الغلاف ==========
+        'dissertation_cover': 'بناء غلاف\nالرسالة',
+        'notebook_cover': 'بناء غلاف\nدفتر المدرسة أو\nالعقود',
+        'book_cover': 'بناء غلاف\nالکتب',
+        'gilded_book_cover': 'بناء غلاف\nالکتب المذهبة',
+        
+        # ========== صفحة السمات ==========
         'theme_guide_title': 'دلیل إعدادات السمة',
         'theme_guide_message': 'اختر لونًا لتغییر لون جمیع الأزرار',
         'background_color': 'لون الخلفیة',
-        'history_guide_title': 'صفحة التاریخ',
-        'history_guide_message': 'یمکنک رؤية آخر الملفات التي تم إنشاؤها هنا',
+        'select_color': 'اختر لونًا',
+        'custom_color': 'لون مخصص',
+        'default_colors': 'الألوان الافتراضیة',
+        
+        # ========== صفحة التاریخ ==========
+        'history_guide_title': 'دلیل صفحة التاریخ',
+        'history_guide_message': 'یمکنک رؤیة آخر ۵ ملفات تم إنشاؤها هنا',
+        'empty_history': '📭 التاریخ فارغ',
         'clear_all': '🧹 مسح الكل',
         'change_path': '📁 تغییر المسار',
-        'empty_history': '📭 التاریخ فارغ',
-        'delete_confirm': 'هل أنت متأكد من حذف هذا العنصر؟',
-        'clear_all_confirm': 'هل أنت متأكد من مسح کل التاریخ؟',
-        'delete_success': 'تم حذف العنصر بنجاح',
-        'clear_all_success': 'تم مسح التاریخ بنجاح',
+        'delete_confirm': 'هل أنت متأكد من حذف {}؟',
+        'clear_all_confirm': 'هل أنت متأكد من مسح التاریخ بالكامل؟',
         'save_file': 'حفظ الملف',
-        'file_saved': 'تم حفظ الملف بنجاح',
-        'file_saved_path': 'تم حفظ الملف في:',
-        'info_title': 'معلومات الملف',
+        'show_info': 'عرض المعلومات',
+        'open_file': 'فتح الملف',
+        'open_location': 'فتح الموقع',
+        'saved_success': 'تم حفظ الملف بنجاح',
+        'info_title': 'معلومات {}',
         'file_name': 'اسم الملف',
         'creation_date': 'تاریخ الإنشاء',
         'original_path': 'المسار الأصلي',
-        'build_info': 'معلومات البناء',
+        'construction_info': 'معلومات الإنشاء',
         'title': 'العنوان',
         'author': 'المؤلف',
-        'spine_value_info': 'قیمة العمود الفقري',
+        'date': 'التاریخ',
+        'spine_value': 'العمود الفقري',
         'page_number': 'رقم الصفحة',
-        'latin_page': 'الصفحة اللاتینیة',
+        'has_latin_page': 'صفحة لاتینیة',
         'has': 'یوجد',
-        'does_not_have': 'لا یوجد',
-        'logo_type': 'نوع الشعار',
+        'has_not': 'لا یوجد',
+        'logo_bw': 'الشعار',
         'black_white': 'أبیض وأسود',
         'colored': 'ملون',
         'logo_shape': 'شکل الشعار',
         'circular': 'دائري',
         'non_circular': 'غیر دائري',
-        'mm': 'ملم',
+        
+        # ========== صفحة دلیل الرسالة ==========
         'step1': 'الخطوة ۱',
         'step2': 'الخطوة ۲',
         'step3': 'الخطوة ۳',
         'step4': 'الخطوة ۴',
-        'help_plan_1': " دليل الخطوة الأولى",
-        'help_plan_2': " دليل الخطوة الثانية",
-        'help_plan_3': ' دليل الخطوة الثالثة',
-        'help_plan_4': ' دليل الخطوة الرابعة',
-        'spine_value': 'قیمة العمود الفقري (ملم):',
+        'help_plan_1': 'دلیل الخطوة الأولى - أدخل المعلومات الأساسیة',
+        'help_plan_2': 'دلیل الخطوة الثانیة - اختر الملف',
+        'help_plan_3': 'دلیل الخطوة الثالثة - اختر مکان الحفظ',
+        'help_plan_4': 'دلیل الخطوة الرابعة - طبق الإعدادات النهائیة',
+        
+        # ========== صفحة بناء غلاف الرسالة ==========
+        'spine_value_placeholder': 'قیمة العمود الفقري (ملم):',
         'title_text': 'العنوان:',
         'author_name': 'اسم المؤلف:',
-        'date': 'التاریخ:',
+        'date_placeholder': 'التاریخ:',
         'title_page_number': 'رقم صفحة العنوان:',
         'output_file_name': 'اسم ملف الإخراج:',
         'select_file': 'اختر ملف',
@@ -442,85 +643,151 @@ Developers: Moghiseh & Shaker
         'file_selected': 'تم اختیار الملف',
         'folder_selected': 'تم اختیار المجلد',
         'logo_selected': 'تم اختیار الشعار',
-        'start_making_message': 'بدأت عملیة بناء الغلاف...',
-        'has_latin_page': 'الرسالة تحتوي على صفحة لاتینیة',
+        'load_logo': 'تحمیل الشعار',
+        'start_making': 'بدء الإنشاء',
+        'refresh_page': 'تحدیث الصفحة',
+        
+        # ========== مربعات الاختیار ==========
+        'has_latin_page_text': 'الرسالة تحتوي على صفحة لاتینیة',
         'has_latin_page_on': 'تحتوي على صفحة لاتینیة',
         'has_latin_page_off': 'لا تحتوي على صفحة لاتینیة',
-        'logo_black_white': 'الشعار أبيض وأسود',
+        'logo_black_white_text': 'الشعار أبيض وأسود',
         'logo_black_white_on': 'أبیض وأسود',
         'logo_black_white_off': 'ملون',
-        'logo_circular': 'الشعار دائري',
+        'logo_circular_text': 'الشعار دائري',
         'logo_circular_on': 'دائري',
         'logo_circular_off': 'غیر دائري',
-        'refresh': 'تحدیث الصفحة',
-        'start_making': 'بدء الإنشاء',
-        'load_logo': 'تحمیل الشعار',
-        'back': '🔙 رجوع',
-        'cancel': 'إلغاء',
-        'apply': 'تطبیق',
+        
+        # ========== صفحة اختیار التاریخ ==========
         'select_year': 'اختر السنة',
         'select_month': 'اختر الشهر',
         'selected_date': 'التاریخ المختار:',
-        'months': ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-                   'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+        'year': 'السنة',
+        'month': 'الشهر',
+        'day': 'الیوم',
+        'today': 'الیوم',
+        
+        # ========== الشهور ==========
+        'months': ['فروردین', 'أردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+                   'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'إسفند'],
+        
+        # ========== أرقام الصفحات ==========
         'pages': ['۱ صفحة', '۲ صفحتین', '۳ صفحات', '٤ صفحات', '٥ صفحات'],
-        'welcome_message': '''مرحبًا بكم في بناء الغلاف
-انقر على أي زر لبدء الإنشاء''',
-        'about_us': '''📱 بناء الغلاف
-
-المطورون: مقیسة و شاکر
-
-📅 الإصدار: {}
-📧 الدعم: support@example.com
-📞 الهاتف: ۹۸۲۱-۱۲۳۴۵۶۷۸+
-
-⭐ تم تصمیم هذا البرنامج لإنشاء أنواع مختلفة من الأغلفة
-
-❤️ شکرًا لاختیارکم لنا''',
+        
+        # ========== الملفات والمجلدات ==========
+        'select_folder': 'اختر مجلد',
+        'select_image': 'اختر صورة',
+        'select_pdf': 'اختر ملف PDF',
+        'downloading': 'جاري التحمیل...',
+        'browsing': 'جاري الاستعراض...',
+        'file': 'ملف',
+        'folder': 'مجلد',
+        'image': 'صورة',
+        'pdf': 'PDF',
+        'all_files': 'جمیع الملفات',
+        
+        # ========== الأعداد والوحدات ==========
+        'mm': 'ملم',
+        'cm': 'سم',
+        'inch': 'بوصة',
+        'px': 'بكسل',
+        'percent': '٪',
+        
+        # ========== الحالات ==========
+        'enabled': 'مفعل',
+        'disabled': 'معطل',
+        'on': 'تشغیل',
+        'off': 'إیقاف',
+        'yes': 'نعم',
+        'no': 'لا',
+        'ok': 'موافق',
+        
+        # ========== الأخطاء ==========
+        'error_occurred': 'حدث خطأ',
+        'network_error': 'خطأ في الشبكة',
+        'file_not_found': 'الملف غیر موجود',
+        'access_denied': 'تم رفض الوصول',
+        'disk_full': 'القرص ممتلئ',
+        'invalid_input': 'إدخال غیر صالح',
+        
+        # ========== المساعدة ==========
+        'help': 'مساعدة',
+        'help_topic': 'موضوع المساعدة',
+        'help_content': 'محتوى المساعدة',
+        'help_index': 'فهرس المساعدة',
+        'help_search': 'بحث في المساعدة',
     },
     
     'chinese': {
+        # ========== 主要标题 ==========
         'app_title': '封面制作器',
         'theme_button': '🎨 主题',
         'history_button': '历史',
-        'guide_button': ' 指南',
+        'guide_button': '指南',
         'language': '语言',
-        "erorr": '错误 ',
+        'error': '错误',
+        'warning': '警告',
+        'success': '成功',
+        'info': '信息',
+        'confirm': '确认',
+        'cancel': '取消',
+        'apply': '应用',
+        'save': '保存',
+        'delete': '删除',
+        'edit': '编辑',
+        'close': '关闭',
+        'back': '🔙 返回',
+        'next': '下一个',
+        'previous': '上一个',
+        'refresh': '刷新',
+        'reset': '重置',
+        'search': '搜索',
+        'filter': '过滤',
+        'sort': '排序',
+        'settings': '设置',
+        
+        # ========== 主要按钮 ==========
         'about_button': '📋 关于我们',
         'about_title': '关于应用程序',
-        'about_message': '''📱 封面制作器
-
-开发者: Moghiseh & Shaker
-
-📅 版本: {}
-📧 支持: support@example.com
-📞 电话: +98-21-12345678
-
-⭐ 专为创建各种封面而设计
-❤️ 感谢您选择我们''',
         'other_programs': '📦 其他程序',
+        'check_update': '🔄 检查更新',
+        
+        # ========== 消息 ==========
+        'welcome_message': '欢迎使用封面制作器',
+        'about_message': '📱 封面制作器\n\n开发者: Moghiseh & Shaker\n📅 版本: {}\n📧 支持: support@example.com',
+        'about_us': '📱 封面制作器\n\n开发者: Moghiseh & Shaker\n📅 版本: {}\n📧 支持: support@example.com',
+        
+        # ========== 其他程序页面 ==========
         'other_programs_title': '我的其他程序',
         'loading_repos': '正在加载信息...',
         'github_error': '连接到GitHub时出错',
         'no_other_programs': '未找到其他程序',
         'view_on_github': '在GitHub上查看',
         'more_info': '更多信息',
-        'refresh': '刷新',
         'description': '描述',
         'no_description': '无描述',
         'unknown': '未知',
-        'language_colon': '语言',
+        'language_colon': '语言:',
         'stars': '星标',
         'created_at': '创建于',
         'updated_at': '更新于',
         'link': '链接',
+        'download': '下载',
+        'download_error': '下载错误',
+        'download_url': '下载地址',
+        'size': '大小',
+        'type': '类型',
+        'file_name_repo': '文件名: {}',
+        'repo_files': '仓库文件',
+        'select_repo': '选择仓库',
+        
+        # ========== 更新页面 ==========
         'update_title': '检查更新',
         'current_version_checking': '当前版本: 正在检查...',
         'latest_version_checking': '最新版本: 正在检查...',
         'current_version': '当前版本',
         'current_version_unknown': '当前版本: 未知',
         'latest_version': '最新版本',
-        'check_update': '检查更新',
         'check_again': '再次检查',
         'start_update': '开始更新',
         'checking': '正在检查...',
@@ -541,56 +808,70 @@ Developers: Moghiseh & Shaker
         'update_error': '更新错误',
         'restart_error': '重新启动错误',
         'update': '更新',
+        'version': '版本',
+        
+        # ========== 封面按钮 ==========
         'dissertation_cover': '论文\n封面',
         'notebook_cover': '笔记本\n或合同\n封面',
         'book_cover': '书籍\n封面',
         'gilded_book_cover': '烫金\n书籍封面',
+        
+        # ========== 主题页面 ==========
         'theme_guide_title': '主题设置指南',
         'theme_guide_message': '选择颜色以更改所有按钮颜色',
         'background_color': '背景颜色',
-        'history_guide_title': '历史页面',
-        'history_guide_message': '您可以在这里查看最近创建的文件',
-        'clear_all': '🧹 清除全部',
-        'change_path': '📁 更改路径',
+        'select_color': '选择颜色',
+        'custom_color': '自定义颜色',
+        'default_colors': '默认颜色',
+        
+        # ========== 历史页面 ==========
+        'history_guide_title': '历史指南',
+        'history_guide_message': '您可以在这里查看最近创建的5个文件',
         'empty_history': '📭 历史记录为空',
-        'delete_confirm': '您确定要删除此项吗？',
+        'clear_all': '🧹 全部清除',
+        'change_path': '📁 更改路径',
+        'delete_confirm': '您确定要删除 {} 吗？',
         'clear_all_confirm': '您确定要清除所有历史记录吗？',
-        'delete_success': '项目删除成功',
-        'clear_all_success': '历史记录清除成功',
         'save_file': '保存文件',
-        'file_saved': '文件保存成功',
-        'file_saved_path': '文件保存在:',
-        'info_title': '文件信息',
+        'show_info': '显示信息',
+        'open_file': '打开文件',
+        'open_location': '打开位置',
+        'saved_success': '文件保存成功',
+        'info_title': '{} 信息',
         'file_name': '文件名',
         'creation_date': '创建日期',
         'original_path': '原始路径',
-        'build_info': '构建信息',
+        'construction_info': '构建信息',
         'title': '标题',
         'author': '作者',
-        'spine_value_info': '书脊值',
+        'date': '日期',
+        'spine_value': '书脊',
         'page_number': '页数',
-        'latin_page': '拉丁页面',
+        'has_latin_page': '拉丁页面',
         'has': '有',
-        'does_not_have': '没有',
-        'logo_type': '徽标类型',
+        'has_not': '无',
+        'logo_bw': '徽标',
         'black_white': '黑白',
         'colored': '彩色',
         'logo_shape': '徽标形状',
         'circular': '圆形',
         'non_circular': '非圆形',
-        'mm': '毫米',
+        
+        # ========== 论文指南页面 ==========
         'step1': '步骤 1',
         'step2': '步骤 2',
         'step3': '步骤 3',
         'step4': '步骤 4',
-        'help_plan_1': '第一步指南',
-        'help_plan_2': '第二步指南',
-        'help_plan_3': '第三步指南',
-        'help_plan_4': '第四步指南',
-        'spine_value': '书脊值 (毫米):',
+        'help_plan_1': '第一步指南 - 输入基本信息',
+        'help_plan_2': '第二步指南 - 选择文件',
+        'help_plan_3': '第三步指南 - 选择保存位置',
+        'help_plan_4': '第四步指南 - 应用最终设置',
+        
+        # ========== 论文封面页面 ==========
+        'spine_value_placeholder': '书脊值 (毫米):',
         'title_text': '标题:',
         'author_name': '作者姓名:',
-        'date': '日期:',
+        'date_placeholder': '日期:',
         'title_page_number': '标题页数:',
         'output_file_name': '输出文件名:',
         'select_file': '选择文件',
@@ -601,85 +882,151 @@ Developers: Moghiseh & Shaker
         'file_selected': '已选择文件',
         'folder_selected': '已选择文件夹',
         'logo_selected': '已选择徽标',
-        'start_making_message': '封面制作过程开始...',
-        'has_latin_page': '论文有拉丁页面',
+        'load_logo': '加载徽标',
+        'start_making': '开始制作',
+        'refresh_page': '刷新页面',
+        
+        # ========== 复选框 ==========
+        'has_latin_page_text': '论文有拉丁页面',
         'has_latin_page_on': '有拉丁页面',
         'has_latin_page_off': '无拉丁页面',
-        'logo_black_white': '徽标是黑白的',
+        'logo_black_white_text': '徽标是黑白的',
         'logo_black_white_on': '黑白',
         'logo_black_white_off': '彩色',
-        'logo_circular': '徽标是圆形的',
+        'logo_circular_text': '徽标是圆形的',
         'logo_circular_on': '圆形',
         'logo_circular_off': '非圆形',
-        'refresh': '刷新页面',
-        'start_making': '开始制作',
-        'load_logo': '加载徽标',
-        'back': '🔙 返回',
-        'cancel': '取消',
-        'apply': '应用',
+        
+        # ========== 日期选择页面 ==========
         'select_year': '选择年份',
         'select_month': '选择月份',
         'selected_date': '选择的日期:',
+        'year': '年',
+        'month': '月',
+        'day': '日',
+        'today': '今天',
+        
+        # ========== 月份 ==========
         'months': ['一月', '二月', '三月', '四月', '五月', '六月',
                    '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        
+        # ========== 页数 ==========
         'pages': ['1 页', '2 页', '3 页', '4 页', '5 页'],
-        'welcome_message': '''欢迎使用封面制作器
-点击任何封面按钮开始''',
-        'about_us': '''📱 封面制作器
-
-开发者: Moghiseh & Shaker
-
-📅 版本: {}
-📧 支持: support@example.com
-📞 电话: +98-21-12345678
-
-⭐ 专为创建各种封面而设计
-
-❤️ 感谢您选择我们''',
+        
+        # ========== 文件和文件夹 ==========
+        'select_folder': '选择文件夹',
+        'select_image': '选择图片',
+        'select_pdf': '选择PDF文件',
+        'downloading': '正在下载...',
+        'browsing': '正在浏览...',
+        'file': '文件',
+        'folder': '文件夹',
+        'image': '图片',
+        'pdf': 'PDF',
+        'all_files': '所有文件',
+        
+        # ========== 数字和单位 ==========
+        'mm': '毫米',
+        'cm': '厘米',
+        'inch': '英寸',
+        'px': '像素',
+        'percent': '%',
+        
+        # ========== 状态 ==========
+        'enabled': '启用',
+        'disabled': '禁用',
+        'on': '开',
+        'off': '关',
+        'yes': '是',
+        'no': '否',
+        'ok': '确定',
+        
+        # ========== 错误 ==========
+        'error_occurred': '发生错误',
+        'network_error': '网络错误',
+        'file_not_found': '文件未找到',
+        'access_denied': '访问被拒绝',
+        'disk_full': '磁盘已满',
+        'invalid_input': '无效输入',
+        
+        # ========== 帮助 ==========
+        'help': '帮助',
+        'help_topic': '帮助主题',
+        'help_content': '帮助内容',
+        'help_index': '帮助索引',
+        'help_search': '帮助搜索',
     },
     
     'russian': {
+        # ========== Основные заголовки ==========
         'app_title': 'Создатель обложек',
         'theme_button': '🎨 Темы',
         'history_button': 'История',
-        'guide_button': ' Руководство',
+        'guide_button': 'Руководство',
         'language': 'Язык',
-        "erorr": 'Ошибка',
+        'error': 'Ошибка',
+        'warning': 'Предупреждение',
+        'success': 'Успех',
+        'info': 'Информация',
+        'confirm': 'Подтвердить',
+        'cancel': 'Отмена',
+        'apply': 'Применить',
+        'save': 'Сохранить',
+        'delete': 'Удалить',
+        'edit': 'Редактировать',
+        'close': 'Закрыть',
+        'back': '🔙 Назад',
+        'next': 'Далее',
+        'previous': 'Назад',
+        'refresh': 'Обновить',
+        'reset': 'Сбросить',
+        'search': 'Поиск',
+        'filter': 'Фильтр',
+        'sort': 'Сортировка',
+        'settings': 'Настройки',
+        
+        # ========== Основные кнопки ==========
         'about_button': '📋 О нас',
         'about_title': 'О приложении',
-        'about_message': '''📱 Создатель обложек
-
-Разработчики: Moghiseh & Shaker
-
-📅 Версия: {}
-📧 Поддержка: support@example.com
-📞 Телефон: +98-21-12345678
-
-⭐ Разработано для создания различных обложек
-❤️ Спасибо, что выбрали нас''',
         'other_programs': '📦 Другие программы',
+        'check_update': '🔄 Проверить обновления',
+        
+        # ========== Сообщения ==========
+        'welcome_message': 'Добро пожаловать в Создатель обложек',
+        'about_message': '📱 Создатель обложек\n\nРазработчики: Moghiseh & Shaker\n📅 Версия: {}\n📧 Поддержка: support@example.com',
+        'about_us': '📱 Создатель обложек\n\nРазработчики: Moghiseh & Shaker\n📅 Версия: {}\n📧 Поддержка: support@example.com',
+        
+        # ========== Страница других программ ==========
         'other_programs_title': 'Мои другие программы',
         'loading_repos': 'Загрузка информации...',
         'github_error': 'Ошибка подключения к GitHub',
         'no_other_programs': 'Другие программы не найдены',
         'view_on_github': 'Смотреть на GitHub',
         'more_info': 'Подробнее',
-        'refresh': 'Обновить',
         'description': 'Описание',
         'no_description': 'Нет описания',
         'unknown': 'Неизвестно',
-        'language_colon': 'Язык',
+        'language_colon': 'Язык:',
         'stars': 'Звезды',
         'created_at': 'Создано',
         'updated_at': 'Обновлено',
         'link': 'Ссылка',
+        'download': 'Скачать',
+        'download_error': 'Ошибка скачивания',
+        'download_url': 'Ссылка для скачивания',
+        'size': 'Размер',
+        'type': 'Тип',
+        'file_name_repo': 'Имя файла: {}',
+        'repo_files': 'Файлы репозитория',
+        'select_repo': 'Выбрать репозиторий',
+        
+        # ========== Страница обновления ==========
         'update_title': 'Проверка обновлений',
         'current_version_checking': 'Текущая версия: Проверка...',
         'latest_version_checking': 'Последняя версия: Проверка...',
         'current_version': 'Текущая версия',
         'current_version_unknown': 'Текущая версия: Неизвестно',
         'latest_version': 'Последняя версия',
-        'check_update': 'Проверить обновления',
         'check_again': 'Проверить снова',
         'start_update': 'Начать обновление',
         'checking': 'Проверка...',
@@ -700,56 +1047,70 @@ Developers: Moghiseh & Shaker
         'update_error': 'Ошибка обновления',
         'restart_error': 'Ошибка перезапуска',
         'update': 'Обновление',
-        'dissertation_cover': 'Диссертация\n Обложка',
-        'notebook_cover': 'Тетрадь\n или Договор\n Обложка',
-        'book_cover': 'Книга\n Обложка',
-        'gilded_book_cover': 'Позолоченная\n Обложка книги',
+        'version': 'Версия',
+        
+        # ========== Кнопки обложек ==========
+        'dissertation_cover': 'Диссертация\nОбложка',
+        'notebook_cover': 'Тетрадь\nили Договор\nОбложка',
+        'book_cover': 'Книга\nОбложка',
+        'gilded_book_cover': 'Позолоченная\nОбложка книги',
+        
+        # ========== Страница темы ==========
         'theme_guide_title': 'Руководство по настройке темы',
         'theme_guide_message': 'Выберите цвет, чтобы изменить цвет всех кнопок',
         'background_color': 'Цвет фона',
-        'history_guide_title': 'Страница истории',
-        'history_guide_message': 'Здесь вы можете увидеть последние созданные файлы',
+        'select_color': 'Выберите цвет',
+        'custom_color': 'Пользовательский цвет',
+        'default_colors': 'Цвета по умолчанию',
+        
+        # ========== Страница истории ==========
+        'history_guide_title': 'Руководство по истории',
+        'history_guide_message': 'Здесь вы можете увидеть последние 5 созданных файлов',
+        'empty_history': '📭 История пуста',
         'clear_all': '🧹 Очистить все',
         'change_path': '📁 Изменить путь',
-        'empty_history': '📭 История пуста',
-        'delete_confirm': 'Вы уверены, что хотите удалить этот элемент?',
+        'delete_confirm': 'Вы уверены, что хотите удалить {}?',
         'clear_all_confirm': 'Вы уверены, что хотите очистить всю историю?',
-        'delete_success': 'Элемент успешно удален',
-        'clear_all_success': 'История успешно очищена',
         'save_file': 'Сохранить файл',
-        'file_saved': 'Файл успешно сохранен',
-        'file_saved_path': 'Файл сохранен в:',
-        'info_title': 'Информация о файле',
+        'show_info': 'Показать информацию',
+        'open_file': 'Открыть файл',
+        'open_location': 'Открыть расположение',
+        'saved_success': 'Файл успешно сохранен',
+        'info_title': 'Информация о {}',
         'file_name': 'Имя файла',
         'creation_date': 'Дата создания',
         'original_path': 'Исходный путь',
-        'build_info': 'Информация о создании',
+        'construction_info': 'Информация о создании',
         'title': 'Название',
         'author': 'Автор',
-        'spine_value_info': 'Значение корешка',
+        'date': 'Дата',
+        'spine_value': 'Корешок',
         'page_number': 'Номер страницы',
-        'latin_page': 'Латинская страница',
+        'has_latin_page': 'Латинская страница',
         'has': 'Есть',
-        'does_not_have': 'Нет',
-        'logo_type': 'Тип логотипа',
+        'has_not': 'Нет',
+        'logo_bw': 'Логотип',
         'black_white': 'Черно-белый',
         'colored': 'Цветной',
         'logo_shape': 'Форма логотипа',
         'circular': 'Круглый',
         'non_circular': 'Некруглый',
-        'mm': 'мм',
+        
+        # ========== Страница руководства по диссертации ==========
         'step1': 'Шаг 1',
         'step2': 'Шаг 2',
         'step3': 'Шаг 3',
         'step4': 'Шаг 4',
-        'help_plan_1': 'Руководство по первому шагу',
-        'help_plan_2': 'Руководство по второму шагу',
-        'help_plan_3': 'Руководство по третьему шагу',
-        'help_plan_4': 'Руководство по четвертому шагу',
-        'spine_value': 'Значение корешка (мм):',
+        'help_plan_1': 'Руководство по первому шагу - Введите основную информацию',
+        'help_plan_2': 'Руководство по второму шагу - Выберите файл',
+        'help_plan_3': 'Руководство по третьему шагу - Выберите место сохранения',
+        'help_plan_4': 'Руководство по четвертому шагу - Примените окончательные настройки',
+        
+        # ========== Страница обложки диссертации ==========
+        'spine_value_placeholder': 'Значение корешка (мм):',
         'title_text': 'Название:',
         'author_name': 'Имя автора:',
-        'date': 'Дата:',
+        'date_placeholder': 'Дата:',
         'title_page_number': 'Номер титульной страницы:',
         'output_file_name': 'Имя выходного файла:',
         'select_file': 'Выбрать файл',
@@ -760,85 +1121,151 @@ Developers: Moghiseh & Shaker
         'file_selected': 'Файл выбран',
         'folder_selected': 'Папка выбрана',
         'logo_selected': 'Логотип выбран',
-        'start_making_message': 'Процесс создания обложки начат...',
-        'has_latin_page': 'Диссертация имеет латинскую страницу',
+        'load_logo': 'Загрузить логотип',
+        'start_making': 'Начать создание',
+        'refresh_page': 'Обновить страницу',
+        
+        # ========== Флажки ==========
+        'has_latin_page_text': 'Диссертация имеет латинскую страницу',
         'has_latin_page_on': 'Имеет латинскую страницу',
         'has_latin_page_off': 'Без латинской страницы',
-        'logo_black_white': 'Логотип черно-белый',
+        'logo_black_white_text': 'Логотип черно-белый',
         'logo_black_white_on': 'Черно-белый',
         'logo_black_white_off': 'Цветной',
-        'logo_circular': 'Логотип круглый',
+        'logo_circular_text': 'Логотип круглый',
         'logo_circular_on': 'Круглый',
         'logo_circular_off': 'Некруглый',
-        'refresh': 'Обновить страницу',
-        'start_making': 'Начать создание',
-        'load_logo': 'Загрузить логотип',
-        'back': '🔙 Назад',
-        'cancel': 'Отмена',
-        'apply': 'Применить',
+        
+        # ========== Страница выбора даты ==========
         'select_year': 'Выберите год',
         'select_month': 'Выберите месяц',
         'selected_date': 'Выбранная дата:',
+        'year': 'Год',
+        'month': 'Месяц',
+        'day': 'День',
+        'today': 'Сегодня',
+        
+        # ========== Месяцы ==========
         'months': ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
                    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        
+        # ========== Количество страниц ==========
         'pages': ['1 страница', '2 страницы', '3 страницы', '4 страницы', '5 страниц'],
-        'welcome_message': '''Добро пожаловать в Создатель обложек
-Нажмите любую кнопку обложки, чтобы начать''',
-        'about_us': '''📱 Создатель обложек
-
-Разработчики: Moghiseh & Shaker
-
-📅 Версия: {}
-📧 Поддержка: support@example.com
-📞 Телефон: +98-21-12345678
-
-⭐ Разработано для создания различных обложек
-
-❤️ Спасибо, что выбрали нас''',
+        
+        # ========== Файлы и папки ==========
+        'select_folder': 'Выбрать папку',
+        'select_image': 'Выбрать изображение',
+        'select_pdf': 'Выбрать PDF файл',
+        'downloading': 'Загрузка...',
+        'browsing': 'Просмотр...',
+        'file': 'Файл',
+        'folder': 'Папка',
+        'image': 'Изображение',
+        'pdf': 'PDF',
+        'all_files': 'Все файлы',
+        
+        # ========== Числа и единицы ==========
+        'mm': 'мм',
+        'cm': 'см',
+        'inch': 'дюйм',
+        'px': 'пикс',
+        'percent': '%',
+        
+        # ========== Статус ==========
+        'enabled': 'Включено',
+        'disabled': 'Отключено',
+        'on': 'Вкл',
+        'off': 'Выкл',
+        'yes': 'Да',
+        'no': 'Нет',
+        'ok': 'ОК',
+        
+        # ========== Ошибки ==========
+        'error_occurred': 'Произошла ошибка',
+        'network_error': 'Ошибка сети',
+        'file_not_found': 'Файл не найден',
+        'access_denied': 'Доступ запрещен',
+        'disk_full': 'Диск переполнен',
+        'invalid_input': 'Неверный ввод',
+        
+        # ========== Помощь ==========
+        'help': 'Помощь',
+        'help_topic': 'Тема помощи',
+        'help_content': 'Содержание помощи',
+        'help_index': 'Индекс помощи',
+        'help_search': 'Поиск помощи',
     },
     
     'spanish': {
+        # ========== Títulos principales ==========
         'app_title': 'Creador de Portadas',
         'theme_button': '🎨 Temas',
         'history_button': 'Historial',
-        'guide_button': ' Guía',
+        'guide_button': 'Guía',
         'language': 'Idioma',
-        "erorr": 'Error',
+        'error': 'Error',
+        'warning': 'Advertencia',
+        'success': 'Éxito',
+        'info': 'Información',
+        'confirm': 'Confirmar',
+        'cancel': 'Cancelar',
+        'apply': 'Aplicar',
+        'save': 'Guardar',
+        'delete': 'Eliminar',
+        'edit': 'Editar',
+        'close': 'Cerrar',
+        'back': '🔙 Atrás',
+        'next': 'Siguiente',
+        'previous': 'Anterior',
+        'refresh': 'Actualizar',
+        'reset': 'Reiniciar',
+        'search': 'Buscar',
+        'filter': 'Filtrar',
+        'sort': 'Ordenar',
+        'settings': 'Configuración',
+        
+        # ========== Botones principales ==========
         'about_button': '📋 Acerca de',
         'about_title': 'Acerca de la aplicación',
-        'about_message': '''📱 Creador de Portadas
-
-Desarrolladores: Moghiseh & Shaker
-
-📅 Versión: {}
-📧 Soporte: support@example.com
-📞 Teléfono: +98-21-12345678
-
-⭐ Diseñado para crear varios tipos de portadas
-❤️ Gracias por elegirnos''',
         'other_programs': '📦 Otros Programas',
+        'check_update': '🔄 Buscar actualizaciones',
+        
+        # ========== Mensajes ==========
+        'welcome_message': 'Bienvenido a Creador de Portadas',
+        'about_message': '📱 Creador de Portadas\n\nDesarrolladores: Moghiseh & Shaker\n📅 Versión: {}\n📧 Soporte: support@example.com',
+        'about_us': '📱 Creador de Portadas\n\nDesarrolladores: Moghiseh & Shaker\n📅 Versión: {}\n📧 Soporte: support@example.com',
+        
+        # ========== Página de otros programas ==========
         'other_programs_title': 'Mis Otros Programas',
         'loading_repos': 'Cargando información...',
         'github_error': 'Error al conectar con GitHub',
         'no_other_programs': 'No se encontraron otros programas',
         'view_on_github': 'Ver en GitHub',
         'more_info': 'Más información',
-        'refresh': 'Actualizar',
         'description': 'Descripción',
         'no_description': 'Sin descripción',
         'unknown': 'Desconocido',
-        'language_colon': 'Idioma',
+        'language_colon': 'Idioma:',
         'stars': 'Estrellas',
         'created_at': 'Creado el',
         'updated_at': 'Actualizado el',
         'link': 'Enlace',
+        'download': 'Descargar',
+        'download_error': 'Error de descarga',
+        'download_url': 'URL de descarga',
+        'size': 'Tamaño',
+        'type': 'Tipo',
+        'file_name_repo': 'Nombre del archivo: {}',
+        'repo_files': 'Archivos del repositorio',
+        'select_repo': 'Seleccionar repositorio',
+        
+        # ========== Página de actualización ==========
         'update_title': 'Buscar actualizaciones',
         'current_version_checking': 'Versión actual: Comprobando...',
         'latest_version_checking': 'Última versión: Comprobando...',
         'current_version': 'Versión actual',
         'current_version_unknown': 'Versión actual: Desconocida',
         'latest_version': 'Última versión',
-        'check_update': 'Buscar actualizaciones',
         'check_again': 'Comprobar de nuevo',
         'start_update': 'Iniciar actualización',
         'checking': 'Comprobando...',
@@ -859,56 +1286,70 @@ Desarrolladores: Moghiseh & Shaker
         'update_error': 'Error de actualización',
         'restart_error': 'Error al reiniciar',
         'update': 'Actualización',
-        'dissertation_cover': 'Portada de\n Tesis',
-        'notebook_cover': 'Portada de\n Cuaderno o\n Contrato',
-        'book_cover': 'Portada de\n Libro',
-        'gilded_book_cover': 'Portada de\n Libro Dorado',
+        'version': 'Versión',
+        
+        # ========== Botones de portada ==========
+        'dissertation_cover': 'Portada de\nTesis',
+        'notebook_cover': 'Portada de\nCuaderno o\nContrato',
+        'book_cover': 'Portada de\nLibro',
+        'gilded_book_cover': 'Portada de\nLibro Dorado',
+        
+        # ========== Página de tema ==========
         'theme_guide_title': 'Guía de configuración de temas',
         'theme_guide_message': 'Seleccione un color para cambiar el color de todos los botones',
         'background_color': 'Color de fondo',
-        'history_guide_title': 'Página de historial',
-        'history_guide_message': 'Aquí puede ver los últimos archivos creados',
+        'select_color': 'Seleccionar color',
+        'custom_color': 'Color personalizado',
+        'default_colors': 'Colores predeterminados',
+        
+        # ========== Página de historial ==========
+        'history_guide_title': 'Guía de historial',
+        'history_guide_message': 'Aquí puede ver los últimos 5 archivos creados',
+        'empty_history': '📭 Historial vacío',
         'clear_all': '🧹 Limpiar todo',
         'change_path': '📁 Cambiar ruta',
-        'empty_history': '📭 El historial está vacío',
-        'delete_confirm': '¿Estás seguro de que quieres eliminar este elemento?',
-        'clear_all_confirm': '¿Estás seguro de que quieres limpiar todo el historial?',
-        'delete_success': 'Elemento eliminado con éxito',
-        'clear_all_success': 'Historial limpiado con éxito',
+        'delete_confirm': '¿Está seguro de eliminar {}?',
+        'clear_all_confirm': '¿Está seguro de limpiar todo el historial?',
         'save_file': 'Guardar archivo',
-        'file_saved': 'Archivo guardado con éxito',
-        'file_saved_path': 'Archivo guardado en:',
-        'info_title': 'Información del archivo',
+        'show_info': 'Mostrar información',
+        'open_file': 'Abrir archivo',
+        'open_location': 'Abrir ubicación',
+        'saved_success': 'Archivo guardado exitosamente',
+        'info_title': 'Información de {}',
         'file_name': 'Nombre del archivo',
         'creation_date': 'Fecha de creación',
         'original_path': 'Ruta original',
-        'build_info': 'Información de creación',
+        'construction_info': 'Información de construcción',
         'title': 'Título',
         'author': 'Autor',
-        'spine_value_info': 'Valor del lomo',
+        'date': 'Fecha',
+        'spine_value': 'Lomo',
         'page_number': 'Número de página',
-        'latin_page': 'Página latina',
+        'has_latin_page': 'Página latina',
         'has': 'Tiene',
-        'does_not_have': 'No tiene',
-        'logo_type': 'Tipo de logotipo',
+        'has_not': 'No tiene',
+        'logo_bw': 'Logotipo',
         'black_white': 'Blanco y negro',
         'colored': 'Color',
         'logo_shape': 'Forma del logotipo',
         'circular': 'Circular',
         'non_circular': 'No circular',
-        'mm': 'mm',
+        
+        # ========== Página de guía de tesis ==========
         'step1': 'Paso 1',
         'step2': 'Paso 2',
         'step3': 'Paso 3',
         'step4': 'Paso 4',
-        'help_plan_1': 'Guía del primer paso',
-        'help_plan_2': 'Guía del segundo paso',
-        'help_plan_3': 'Guía del tercer paso',
-        'help_plan_4': 'Guía del cuarto paso',
-        'spine_value': 'Valor del lomo (mm):',
+        'help_plan_1': 'Guía del primer paso - Ingrese información básica',
+        'help_plan_2': 'Guía del segundo paso - Seleccione el archivo',
+        'help_plan_3': 'Guía del tercer paso - Seleccione la ubicación de guardado',
+        'help_plan_4': 'Guía del cuarto paso - Aplique la configuración final',
+        
+        # ========== Página de portada de tesis ==========
+        'spine_value_placeholder': 'Valor del lomo (mm):',
         'title_text': 'Título:',
         'author_name': 'Nombre del autor:',
-        'date': 'Fecha:',
+        'date_placeholder': 'Fecha:',
         'title_page_number': 'Número de página de título:',
         'output_file_name': 'Nombre del archivo de salida:',
         'select_file': 'Seleccionar archivo',
@@ -919,41 +1360,79 @@ Desarrolladores: Moghiseh & Shaker
         'file_selected': 'Archivo seleccionado',
         'folder_selected': 'Carpeta seleccionada',
         'logo_selected': 'Logotipo seleccionado',
-        'start_making_message': 'Proceso de creación de portada iniciado...',
-        'has_latin_page': 'La tesis tiene página latina',
+        'load_logo': 'Cargar logotipo',
+        'start_making': 'Comenzar creación',
+        'refresh_page': 'Actualizar página',
+        
+        # ========== Casillas de verificación ==========
+        'has_latin_page_text': 'La tesis tiene página latina',
         'has_latin_page_on': 'Tiene página latina',
         'has_latin_page_off': 'Sin página latina',
-        'logo_black_white': 'El logotipo es blanco y negro',
+        'logo_black_white_text': 'El logotipo es blanco y negro',
         'logo_black_white_on': 'Blanco y negro',
         'logo_black_white_off': 'Color',
-        'logo_circular': 'El logotipo es circular',
+        'logo_circular_text': 'El logotipo es circular',
         'logo_circular_on': 'Circular',
         'logo_circular_off': 'No circular',
-        'refresh': 'Actualizar página',
-        'start_making': 'Comenzar creación',
-        'load_logo': 'Cargar logotipo',
-        'back': '🔙 Atrás',
-        'cancel': 'Cancelar',
-        'apply': 'Aplicar',
+        
+        # ========== Página de selección de fecha ==========
         'select_year': 'Seleccionar año',
         'select_month': 'Seleccionar mes',
         'selected_date': 'Fecha seleccionada:',
+        'year': 'Año',
+        'month': 'Mes',
+        'day': 'Día',
+        'today': 'Hoy',
+        
+        # ========== Meses ==========
         'months': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        
+        # ========== Números de páginas ==========
         'pages': ['1 página', '2 páginas', '3 páginas', '4 páginas', '5 páginas'],
-        'welcome_message': '''Bienvenido a Creador de Portadas
-Haga clic en cualquier botón de portada para comenzar''',
-        'about_us': '''📱 Creador de Portadas
-
-Desarrolladores: Moghiseh & Shaker
-
-📅 Versión: {}
-📧 Soporte: support@example.com
-📞 Teléfono: +98-21-12345678
-
-⭐ Diseñado para crear varios tipos de portadas
-
-❤️ Gracias por elegirnos''',
+        
+        # ========== Archivos y carpetas ==========
+        'select_folder': 'Seleccionar carpeta',
+        'select_image': 'Seleccionar imagen',
+        'select_pdf': 'Seleccionar archivo PDF',
+        'downloading': 'Descargando...',
+        'browsing': 'Navegando...',
+        'file': 'Archivo',
+        'folder': 'Carpeta',
+        'image': 'Imagen',
+        'pdf': 'PDF',
+        'all_files': 'Todos los archivos',
+        
+        # ========== Números y unidades ==========
+        'mm': 'mm',
+        'cm': 'cm',
+        'inch': 'pulg',
+        'px': 'px',
+        'percent': '%',
+        
+        # ========== Estado ==========
+        'enabled': 'Habilitado',
+        'disabled': 'Deshabilitado',
+        'on': 'Encendido',
+        'off': 'Apagado',
+        'yes': 'Sí',
+        'no': 'No',
+        'ok': 'Aceptar',
+        
+        # ========== Errores ==========
+        'error_occurred': 'Ocurrió un error',
+        'network_error': 'Error de red',
+        'file_not_found': 'Archivo no encontrado',
+        'access_denied': 'Acceso denegado',
+        'disk_full': 'Disco lleno',
+        'invalid_input': 'Entrada inválida',
+        
+        # ========== Ayuda ==========
+        'help': 'Ayuda',
+        'help_topic': 'Tema de ayuda',
+        'help_content': 'Contenido de ayuda',
+        'help_index': 'Índice de ayuda',
+        'help_search': 'Búsqueda de ayuda',
     }
 }
 
@@ -965,10 +1444,9 @@ def get_text(key):
     try:
         return languages[current_language][key]
     except KeyError:
-        try:
-            return languages['persian'][key]
-        except:
-            return key
+        # اگر کلید پیدا نشد، همان کلید را برگردان
+        print(f"Warning: Key '{key}' not found in language '{current_language}'")
+        return key
 
 def set_language(lang):
     """تغییر زبان برنامه"""
@@ -998,9 +1476,10 @@ def get_language_name(lang_code):
     }
     return language_names.get(lang_code, lang_code)
 
-def get_boolean_text(value):
-    """دریافت متن بولین بر اساس زبان"""
-    if value in [True, 'on', 'has_latin_page_on', 'logo_black_white_on', 'logo_circular_on']:
-        return get_text('has')
-    else:
-        return get_text('does_not_have')
+def get_available_languages():
+    """دریافت لیست زبان‌های موجود"""
+    return list(languages.keys())
+
+def get_language_display_names():
+    """دریافت لیست نام‌های نمایشی زبان‌ها"""
+    return ['فارسی', 'English', 'العربية', '中文', 'Русский', 'Español']

@@ -2,11 +2,12 @@
 
 from customtkinter import *
 from widgets import widget_instance
-from file_handlers import file_input, save_in, load_image
+from file_handlers import file_input, save_in, load_image, get_selected_files
 from constants import color_buttons, all_entry, all_textbox
 from languages import get_text, get_pages
-import os
+from history_manager import add_to_history
 from tkinter.messagebox import showinfo
+import os
 
 def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, show_frame_callback):
     """ایجاد ویجت‌های صفحه ساخت جلد پایان‌نامه"""
@@ -23,7 +24,7 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
         width=150, height=30, corner_radius=5,
         border_color=color_buttons,
         border_width=2,
-        placeholder_text=get_text('spine_value'), 
+        placeholder_text=get_text('spine_value_placeholder'), 
         justify='right'
     )
     ent_value_spine.grid(column=4, row=2, sticky='e', padx=10)
@@ -62,7 +63,7 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
         width=100, height=30, corner_radius=5,
         border_color=color_buttons,
         border_width=2,
-        placeholder_text=get_text('date'), 
+        placeholder_text=get_text('date_placeholder'), 
         justify='right'
     )
     ent_date.grid(column=4, row=5, sticky='e', padx=10)
@@ -97,8 +98,6 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
         dropdown_font=CTkFont('B Titr', 15)
     )
     cmb_page_number.grid(column=4, row=7, sticky='e', padx=10)
-    if cmb_list:
-        cmb_page_number.set(cmb_list[0])
 
     # ورودی نام فایل خروجی
     ent_name_output = widget_instance.CTk_Entry(
@@ -151,7 +150,7 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
     check_latin_page_var = StringVar(value=get_text('has_latin_page_on'))
     check_latin_page = widget_instance.CTk_CheckBox(
         window_makeing_Dissertation,
-        text=get_text('has_latin_page'),
+        text=get_text('has_latin_page_text'),
         onvalue=get_text('has_latin_page_on'), 
         offvalue=get_text('has_latin_page_off'),
         text_color='silver', 
@@ -172,7 +171,7 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
     
     check_logo = widget_instance.CTk_CheckBox(
         window_makeing_Dissertation,
-        text=get_text('logo_black_white'),
+        text=get_text('logo_black_white_text'),
         onvalue=get_text('logo_black_white_on'), 
         offvalue=get_text('logo_black_white_off'),
         text_color='silver', 
@@ -206,7 +205,7 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
     check_circle_var = StringVar(value=get_text('logo_circular_off'))
     check_circle = widget_instance.CTk_CheckBox(
         window_makeing_Dissertation,
-        text=get_text('logo_circular'),
+        text=get_text('logo_circular_text'),
         onvalue=get_text('logo_circular_on'), 
         offvalue=get_text('logo_circular_off'),
         text_color='silver', 
@@ -219,9 +218,9 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
     # دکمه پاکسازی
     def refresh():
         place_text = [
-            get_text('spine_value'),
+            get_text('spine_value_placeholder'),
             get_text('author_name'), 
-            get_text('date'),  
+            get_text('date_placeholder'),  
             get_text('output_file_name')
         ]
         
@@ -239,8 +238,6 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
         
         val_defualt_page = StringVar(value=get_pages()[0])
         cmb_page_number.configure(variable=val_defualt_page)
-        if get_pages():
-            cmb_page_number.set(get_pages()[0])
 
         txt_title.delete(0.0, END)
         txt_title.insert(0.0, get_text('title_text') + '\n', 'right')
@@ -254,18 +251,11 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
         lbl_pdf_address.configure(text=get_text('no_file_selected'))
         lbl_save_to.configure(text=get_text('no_folder_selected'))
         lbl_load_page.configure(text=get_text('no_logo_selected'))
-        
-        # پاک کردن متغیرهای سراسری
-        from file_handlers import selected_pdf_file, save_in_folder, path_load
-        # global selected_pdf_file, save_in_folder, path_load
-        selected_pdf_file = None
-        save_in_folder = None
-        path_load = None
 
     btn_refresh = widget_instance.CTk_Button(
         window_makeing_Dissertation,
         width=150, height=50,
-        text=get_text('refresh'),
+        text=get_text('refresh_page'),
         hover_color='silver',
         command=refresh
     )
@@ -274,18 +264,7 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
     # دکمه شروع ساخت
     def start_making():
         """شروع ساخت جلد و ذخیره در تاریخچه"""
-        from history_manager import add_to_history
         from file_handlers import selected_pdf_file, save_in_folder
-        
-        # بررسی وجود فایل ورودی
-        if not selected_pdf_file:
-            showinfo("توجه", "لطفاً فایل PDF را انتخاب کنید")
-            return
-        
-        # بررسی وجود محل ذخیره
-        if not save_in_folder:
-            showinfo("توجه", "لطفاً محل ذخیره را انتخاب کنید")
-            return
         
         # جمع‌آوری اطلاعات
         metadata = {
@@ -296,19 +275,18 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
             'page_number': cmb_page_number.get(),
             'has_latin': check_latin_page_var.get(),
             'logo_bw': check_logo_var.get(),
-            'logo_circle': check_circle_var.get()
+            'logo_circle': check_circle_var.get(),
+            'output_name': ent_name_output.get()
         }
         
         # نام فایل خروجی
-        file_name = ent_name_output.get().strip()
-        if not file_name:
-            file_name = 'output.pdf'
+        file_name = ent_name_output.get() or 'output.pdf'
         if not file_name.endswith('.pdf'):
             file_name += '.pdf'
         
         # اطلاعات فایل برای تاریخچه
         file_info = {
-            'original_path': selected_pdf_file,
+            'original_path': selected_pdf_file or '',
             'file_name': file_name,
             'save_path': os.path.join(save_in_folder, file_name) if save_in_folder else '',
             'metadata': metadata
@@ -317,11 +295,8 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
         # اضافه به تاریخچه
         add_to_history(file_info)
         
-        # پیام موفقیت
-        showinfo("شروع ساخت", get_text('start_making_message'))
-        
         # اینجا کد اصلی ساخت جلد را اضافه کنید
-        # ...
+        showinfo(get_text('guide_button'), f"{get_text('start_making')}...")
 
     btn_start_make = widget_instance.CTk_Button(
         window_makeing_Dissertation,
@@ -331,6 +306,17 @@ def create_dissertation_frame(window_makeing_Dissertation, window_choose_date, s
         command=start_making
     )
     btn_start_make.grid(column=3, row=10, padx=10)
+
+    # تنظیم bg_color برای همه ویجت‌ها
+    try:
+        for widget in [ent_value_spine, txt_title, ent_name_author, ent_date, 
+                       cmb_page_number, ent_name_output, check_latin_page, 
+                       check_logo, check_circle, btn_date, btn_choice, 
+                       btn_save_in, btn_load_image, btn_refresh, btn_start_make]:
+            if widget:
+                widget.configure(bg_color='transparent')
+    except:
+        pass
 
     return {
         'ent_date': ent_date,

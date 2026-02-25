@@ -1,7 +1,7 @@
 # _____________________________ history_frame.py _____________________________
 
 from customtkinter import *
-from PIL import Image, ImageTk
+from PIL import Image
 import os
 from tkinter.messagebox import showinfo, askyesno
 import subprocess
@@ -11,7 +11,7 @@ from history_manager import (
 )
 from languages import get_text
 from constants import color_buttons, all_buttons
-from widgets import widget_instance
+import threading
 
 class HistoryItemFrame(CTkFrame):
     """فریم هر آیتم تاریخچه"""
@@ -38,40 +38,40 @@ class HistoryItemFrame(CTkFrame):
         
         # ========== اطلاعات فایل ==========
         # نام فایل
-        name_label = CTkLabel(
+        self.name_label = CTkLabel(
             self,
             text=item_data['original_name'],
             font=CTkFont('B Titr', 14, 'bold'),
             text_color='white',
             anchor='w'
         )
-        name_label.grid(row=0, column=1, columnspan=3, sticky='w', padx=5, pady=(5, 0))
+        self.name_label.grid(row=0, column=1, columnspan=3, sticky='w', padx=5, pady=(5, 0))
         
         # تاریخ اضافه شدن
-        date_label = CTkLabel(
+        self.date_label = CTkLabel(
             self,
             text=f"📅 {item_data['date_added']}",
             font=CTkFont('B Titr', 10),
             text_color='silver',
             anchor='w'
         )
-        date_label.grid(row=1, column=1, columnspan=3, sticky='w', padx=5)
+        self.date_label.grid(row=1, column=1, columnspan=3, sticky='w', padx=5)
         
         # اطلاعات خلاصه
         metadata = item_data.get('metadata', {})
-        summary = f"📄 {metadata.get('title', 'بدون عنوان')[:20]}..."
-        summary_label = CTkLabel(
+        summary = f"📄 {metadata.get('title', get_text('unknown'))[:20]}..."
+        self.summary_label = CTkLabel(
             self,
             text=summary,
             font=CTkFont('B Titr', 10),
             text_color='gray',
             anchor='w'
         )
-        summary_label.grid(row=2, column=1, columnspan=3, sticky='w', padx=5, pady=(0, 5))
+        self.summary_label.grid(row=2, column=1, columnspan=3, sticky='w', padx=5, pady=(0, 5))
         
         # ========== دکمه‌ها ==========
         # دکمه حذف (قرمز)
-        delete_btn = CTkButton(
+        self.delete_btn = CTkButton(
             self,
             text="🗑️",
             width=30, height=30,
@@ -80,11 +80,11 @@ class HistoryItemFrame(CTkFrame):
             hover_color='darkred',
             command=self.delete_item
         )
-        delete_btn.grid(row=0, column=4, padx=(5, 10), pady=5)
-        all_buttons.append(delete_btn)
+        self.delete_btn.grid(row=0, column=4, padx=(5, 10), pady=5)
+        all_buttons.append(self.delete_btn)
         
         # دکمه ذخیره مجدد
-        save_btn = CTkButton(
+        self.save_btn = CTkButton(
             self,
             text="💾",
             width=30, height=30,
@@ -93,11 +93,11 @@ class HistoryItemFrame(CTkFrame):
             hover_color='darkgreen',
             command=self.save_file
         )
-        save_btn.grid(row=1, column=4, padx=(5, 10), pady=5)
-        all_buttons.append(save_btn)
+        self.save_btn.grid(row=1, column=4, padx=(5, 10), pady=5)
+        all_buttons.append(self.save_btn)
         
         # دکمه نمایش اطلاعات
-        info_btn = CTkButton(
+        self.info_btn = CTkButton(
             self,
             text="ℹ️",
             width=30, height=30,
@@ -106,11 +106,11 @@ class HistoryItemFrame(CTkFrame):
             hover_color='darkblue',
             command=self.show_info
         )
-        info_btn.grid(row=2, column=4, padx=(5, 10), pady=5)
-        all_buttons.append(info_btn)
+        self.info_btn.grid(row=2, column=4, padx=(5, 10), pady=5)
+        all_buttons.append(self.info_btn)
         
         # دکمه باز کردن فایل
-        open_btn = CTkButton(
+        self.open_btn = CTkButton(
             self,
             text="📂",
             width=30, height=30,
@@ -119,11 +119,11 @@ class HistoryItemFrame(CTkFrame):
             hover_color='gray',
             command=self.open_file
         )
-        open_btn.grid(row=0, column=5, padx=(0, 10), pady=5)
-        all_buttons.append(open_btn)
+        self.open_btn.grid(row=0, column=5, padx=(0, 10), pady=5)
+        all_buttons.append(self.open_btn)
         
         # دکمه باز کردن محل فایل
-        location_btn = CTkButton(
+        self.location_btn = CTkButton(
             self,
             text="📍",
             width=30, height=30,
@@ -132,8 +132,8 @@ class HistoryItemFrame(CTkFrame):
             hover_color='darkviolet',
             command=self.open_location
         )
-        location_btn.grid(row=1, column=5, padx=(0, 10), pady=5)
-        all_buttons.append(location_btn)
+        self.location_btn.grid(row=1, column=5, padx=(0, 10), pady=5)
+        all_buttons.append(self.location_btn)
         
         # تنظیم وزن ستون‌ها
         self.grid_columnconfigure(1, weight=1)
@@ -146,18 +146,16 @@ class HistoryItemFrame(CTkFrame):
                 img = Image.open(history_path)
                 img.thumbnail((80, 80))
                 
-                # تبدیل به CTkImage
                 ctk_img = CTkImage(light_image=img, dark_image=img, size=(80, 80))
                 self.thumbnail_label.configure(image=ctk_img, text="")
             else:
-                # تصویر پیش‌فرض برای فایل‌های غیرتصویری
                 self.thumbnail_label.configure(text="📄", font=CTkFont(size=40))
         except:
             self.thumbnail_label.configure(text="📄", font=CTkFont(size=40))
     
     def delete_item(self):
         """حذف آیتم"""
-        if askyesno("تأیید حذف", f"آیا از حذف {self.item_data['original_name']} مطمئن هستید؟"):
+        if askyesno(get_text('guide_button'), get_text('delete_confirm').format(self.item_data['original_name'])):
             remove_from_history(self.item_data['id'])
             if self.on_delete_callback:
                 self.on_delete_callback()
@@ -165,60 +163,47 @@ class HistoryItemFrame(CTkFrame):
     def save_file(self):
         """ذخیره فایل در محل دلخواه"""
         from tkinter import filedialog
+        import shutil
         
         file_path = filedialog.asksaveasfilename(
             defaultextension='.pdf',
             filetypes=[('pdf files', '*.pdf'), ('all files', '*.*')],
             initialfile=self.item_data['original_name'],
-            title='ذخیره فایل'
+            title=get_text('save_file')
         )
         
         if file_path:
-            import shutil
             history_path = get_history_file_path(self.item_data)
             if os.path.exists(history_path):
                 shutil.copy2(history_path, file_path)
-                showinfo("ذخیره شد", f"فایل در مسیر زیر ذخیره شد:\n{file_path}")
+                showinfo(get_text('guide_button'), f"{get_text('saved_success')}\n{file_path}")
     
     def show_info(self):
         """نمایش اطلاعات کامل"""
         metadata = self.item_data.get('metadata', {})
-        from languages import get_boolean_text
         
-        # تشخیص مقدار صفحه لاتین
-        has_latin = metadata.get('has_latin', '')
-        latin_text = get_boolean_text(has_latin)
-        
-        # تشخیص نوع لوگو
-        logo_bw = metadata.get('logo_bw', '')
-        logo_type = get_text('black_white') if logo_bw in ['logo_black_white_on', 'on', True] else get_text('colored')
-        
-        # تشخیص شکل لوگو
-        logo_circle = metadata.get('logo_circle', '')
-        logo_shape = get_text('circular') if logo_circle in ['logo_circular_on', 'on', True] else get_text('non_circular')
-        
-        # پاک کردن عنوان از متن (اگر عنوان با get_text('title_text') شروع شده باشد)
-        title_text = metadata.get('title', get_text('unknown'))
-        if title_text.startswith(get_text('title_text')):
-            title_text = title_text.replace(get_text('title_text'), '').strip()
+        has_latin = get_text('has') if metadata.get('has_latin') == get_text('has_latin_page_on') else get_text('has_not')
+        logo_type = get_text('black_white') if metadata.get('logo_bw') == get_text('logo_black_white_on') else get_text('colored')
+        logo_shape = get_text('circular') if metadata.get('logo_circle') == get_text('logo_circular_on') else get_text('non_circular')
         
         info_text = f"""
-    {get_text('file_name')}: {self.item_data['original_name']}
-    {get_text('creation_date')}: {self.item_data['date_added']}
-    {get_text('original_path')}: {self.item_data.get('save_path', get_text('unknown'))}
+{get_text('file_name')}: {self.item_data['original_name']}
+{get_text('creation_date')}: {self.item_data['date_added']}
+{get_text('original_path')}: {self.item_data.get('save_path', get_text('unknown'))}
 
-    {get_text('build_info')}:
-    • {get_text('title')}: {title_text}
-    • {get_text('author')}: {metadata.get('author', get_text('unknown'))}
-    • {get_text('date')}: {metadata.get('date', get_text('unknown'))}
-    • {get_text('spine_value_info')}: {metadata.get('spine', get_text('unknown'))} {get_text('mm')}
-    • {get_text('page_number')}: {metadata.get('page_number', get_text('unknown'))}
-    • {get_text('latin_page')}: {latin_text}
-    • {get_text('logo_type')}: {logo_type}
-    • {get_text('logo_shape')}: {logo_shape}
+{get_text('construction_info')}:
+• {get_text('title')}: {metadata.get('title', get_text('unknown'))}
+• {get_text('author')}: {metadata.get('author', get_text('unknown'))}
+• {get_text('date')}: {metadata.get('date', get_text('unknown'))}
+• {get_text('spine_value')}: {metadata.get('spine', get_text('unknown'))} mm
+• {get_text('page_number')}: {metadata.get('page_number', get_text('unknown'))}
+• {get_text('has_latin_page')}: {has_latin}
+• {get_text('logo_bw')}: {logo_type}
+• {get_text('logo_shape')}: {logo_shape}
         """
         
-        showinfo(f"{get_text('info_title')} - {self.item_data['original_name']}", info_text)
+        showinfo(get_text('info_title').format(self.item_data['original_name']), info_text)
+    
     def open_file(self):
         """باز کردن فایل"""
         open_file(self.item_data)
@@ -226,6 +211,12 @@ class HistoryItemFrame(CTkFrame):
     def open_location(self):
         """باز کردن محل فایل"""
         open_file_location(self.item_data)
+    
+    def update_texts(self):
+        """به‌روزرسانی متن‌ها"""
+        metadata = self.item_data.get('metadata', {})
+        summary = f"📄 {metadata.get('title', get_text('unknown'))[:20]}..."
+        self.summary_label.configure(text=summary)
 
 
 class HistoryFrame(CTkFrame):
@@ -235,15 +226,16 @@ class HistoryFrame(CTkFrame):
         CTkFrame.__init__(self, master=master, fg_color='transparent')
         
         self.show_frame = show_frame_callback
+        self.items = []
         
         # عنوان صفحه
-        title_label = CTkLabel(
+        self.title_label = CTkLabel(
             self,
             text=get_text('history_button'),
             font=CTkFont('B Titr', 30),
             text_color='white'
         )
-        title_label.pack(pady=(30, 20))
+        self.title_label.pack(pady=(30, 20))
         
         # دکمه بازگشت
         back_btn = CTkButton(
@@ -270,9 +262,9 @@ class HistoryFrame(CTkFrame):
         bottom_frame.pack(side='bottom', fill='x', pady=20)
         
         # دکمه پاک کردن همه (قرمز)
-        clear_all_btn = CTkButton(
+        self.clear_all_btn = CTkButton(
             bottom_frame,
-            text="🧹 پاک کردن همه",
+            text=get_text('clear_all'),
             width=200, height=40,
             corner_radius=8,
             fg_color='red',
@@ -280,13 +272,13 @@ class HistoryFrame(CTkFrame):
             font=CTkFont('B Titr', 16),
             command=self.clear_all
         )
-        clear_all_btn.pack(side='left', padx=20, expand=True)
-        all_buttons.append(clear_all_btn)
+        self.clear_all_btn.pack(side='left', padx=20, expand=True)
+        all_buttons.append(self.clear_all_btn)
         
         # دکمه تغییر مسیر تاریخچه (سبز)
-        change_path_btn = CTkButton(
+        self.change_path_btn = CTkButton(
             bottom_frame,
-            text="📁 تغییر مسیر",
+            text=get_text('change_path'),
             width=200, height=40,
             corner_radius=8,
             fg_color='green',
@@ -294,11 +286,30 @@ class HistoryFrame(CTkFrame):
             font=CTkFont('B Titr', 16),
             command=self.change_history_path
         )
-        change_path_btn.pack(side='right', padx=20, expand=True)
-        all_buttons.append(change_path_btn)
+        self.change_path_btn.pack(side='right', padx=20, expand=True)
+        all_buttons.append(self.change_path_btn)
+        
+        # لیبل وضعیت خالی بودن
+        self.empty_label = None
         
         # بارگذاری آیتم‌ها
         self.load_items()
+    
+    def update_texts(self):
+        """به‌روزرسانی متن‌ها بعد از تغییر زبان"""
+        self.title_label.configure(text=get_text('history_button'))
+        self.clear_all_btn.configure(text=get_text('clear_all'))
+        self.change_path_btn.configure(text=get_text('change_path'))
+        
+        if self.empty_label:
+            self.empty_label.configure(text=get_text('empty_history'))
+        
+        # به‌روزرسانی متن آیتم‌ها
+        for item in self.items:
+            try:
+                item.update_texts()
+            except:
+                pass
     
     def load_items(self):
         """بارگذاری و نمایش آیتم‌های تاریخچه"""
@@ -306,18 +317,20 @@ class HistoryFrame(CTkFrame):
         for widget in self.items_container.winfo_children():
             widget.destroy()
         
+        self.items.clear()
+        
         # بارگذاری تاریخچه
         history = load_history()
         
         if not history:
             # نمایش پیغام خالی بودن تاریخچه
-            empty_label = CTkLabel(
+            self.empty_label = CTkLabel(
                 self.items_container,
-                text="📭 تاریخچه خالی است",
+                text=get_text('empty_history'),
                 font=CTkFont('B Titr', 20),
                 text_color='silver'
             )
-            empty_label.pack(pady=50)
+            self.empty_label.pack(pady=50)
             return
         
         # نمایش آیتم‌ها
@@ -328,27 +341,28 @@ class HistoryFrame(CTkFrame):
                 on_delete_callback=self.load_items
             )
             item_frame.pack(fill='x', pady=5, padx=5)
+            self.items.append(item_frame)
     
     def clear_all(self):
         """پاک کردن کل تاریخچه"""
-        if askyesno("تأیید", "آیا از پاک کردن کامل تاریخچه مطمئن هستید؟"):
+        if askyesno(get_text('guide_button'), get_text('clear_all_confirm')):
             clear_all_history()
             self.load_items()
-            showinfo("انجام شد", "تاریخچه با موفقیت پاک شد")
+            showinfo(get_text('guide_button'), get_text('clear_all'))
     
     def change_history_path(self):
         """تغییر مسیر ذخیره تاریخچه"""
         from tkinter import filedialog
-        from history_manager import HISTORY_PATH, ensure_history_folder
+        from history_manager import HISTORY_PATH
         import shutil
+        import json
         
         new_path = filedialog.askdirectory(
-            title="انتخاب مسیر جدید برای تاریخچه"
+            title=get_text('change_path')
         )
         
         if new_path:
             try:
-                # انتقال فایل‌ها به مسیر جدید
                 if os.path.exists(HISTORY_PATH):
                     for item in os.listdir(HISTORY_PATH):
                         src = os.path.join(HISTORY_PATH, item)
@@ -356,15 +370,13 @@ class HistoryFrame(CTkFrame):
                         if os.path.isfile(src):
                             shutil.copy2(src, dst)
                 
-                # به‌روزرسانی مسیر در فایل JSON
-                import json
                 history_file = os.path.join(new_path, 'history.json')
                 old_history_file = os.path.join(HISTORY_PATH, 'history.json')
                 
                 if os.path.exists(old_history_file):
                     shutil.copy2(old_history_file, history_file)
                 
-                showinfo("موفق", f"مسیر تاریخچه به:\n{new_path}\nتغییر یافت")
+                showinfo(get_text('guide_button'), get_text('saved_success'))
             except Exception as e:
                 from tkinter.messagebox import showerror
-                showerror("خطا", f"خطا در تغییر مسیر:\n{str(e)}")
+                showerror(get_text('error'), f"{get_text('update_error')}: {str(e)}")

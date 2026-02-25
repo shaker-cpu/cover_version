@@ -5,18 +5,19 @@ import shutil
 import zipfile
 import subprocess
 import sys
-from tkinter.messagebox import showerror
+from tkinter.messagebox import showinfo, showerror
 from constants import here
 from languages import get_text
+import json
 import tempfile
 
 # آدرس‌های گیت‌هاب
 GITHUB_USERNAME = 'shaker-cpu'
-REPO_NAME = 'cover_version'
+REPO_NAME = 'cover_version'  # این فقط برای آپدیت برنامه اصلی است
 VERSION_FILE = 'ver.txt'
 GITHUB_API = f'https://api.github.com/repos/{GITHUB_USERNAME}/{REPO_NAME}/contents'
 RAW_CONTENT_URL = f'https://raw.githubusercontent.com/{GITHUB_USERNAME}/{REPO_NAME}/main'
-REPO_URL = f'https://github.com/{GITHUB_USERNAME}'
+GITHUB_PROFILE_URL = f'https://github.com/{GITHUB_USERNAME}'
 
 # لیست فایل‌ها و پوشه‌هایی که نباید کپی شوند
 EXCLUDED_FILES = [
@@ -60,13 +61,14 @@ def should_exclude_dir(dirname):
     return dirname in EXCLUDED_FILES
 
 def get_github_repos():
-    """دریافت لیست ریپوزیتوری‌های کاربر از گیت‌هاب"""
+    """دریافت لیست ریپوزیتوری‌های کاربر از گیت‌هاب (برای صفحه برنامه‌های دیگر)"""
     try:
         url = f'https://api.github.com/users/{GITHUB_USERNAME}/repos'
         response = requests.get(url, timeout=10)
         
         if response.status_code == 200:
             repos = response.json()
+            # فیلتر کردن ریپوی اصلی آپدیت
             other_repos = [repo for repo in repos if repo['name'] != REPO_NAME]
             return other_repos
         else:
@@ -88,7 +90,7 @@ def get_current_version():
         return None
 
 def get_github_version():
-    """دریافت نسخه از گیت‌هاب"""
+    """دریافت نسخه از گیت‌هاب (برای آپدیت)"""
     try:
         url = f'{RAW_CONTENT_URL}/{VERSION_FILE}'
         response = requests.get(url, timeout=10)
@@ -113,16 +115,13 @@ def compare_versions(version1, version2):
         return None
     
     try:
-        # تبدیل نسخه‌ها به لیست اعداد
         v1_parts = [int(x) for x in version1.split('.')]
         v2_parts = [int(x) for x in version2.split('.')]
         
-        # هم‌اندازه کردن لیست‌ها
         max_len = max(len(v1_parts), len(v2_parts))
         v1_parts.extend([0] * (max_len - len(v1_parts)))
         v2_parts.extend([0] * (max_len - len(v2_parts)))
         
-        # مقایسه جزء به جزء
         for i in range(max_len):
             if v1_parts[i] > v2_parts[i]:
                 return 1
@@ -132,7 +131,6 @@ def compare_versions(version1, version2):
         return 0
     except Exception as e:
         print(f"Error comparing versions: {e}")
-        # اگر خطایی رخ داد، مقایسه رشته‌ای انجام بده
         if version1 > version2:
             return 1
         elif version1 < version2:
@@ -141,7 +139,7 @@ def compare_versions(version1, version2):
             return 0
 
 def download_and_replace_files(progress_callback=None):
-    """دانلود تمام فایل‌های ریپوزیتوری و جایگزینی با فایل‌های فعلی"""
+    """دانلود تمام فایل‌های ریپوزیتوری و جایگزینی با فایل‌های فعلی (برای آپدیت)"""
     try:
         api_url = f'https://api.github.com/repos/{GITHUB_USERNAME}/{REPO_NAME}/zipball/main'
         response = requests.get(api_url, stream=True, timeout=30)
@@ -228,7 +226,7 @@ def download_and_replace_files(progress_callback=None):
         return False
 
 def get_repo_info(repo_name):
-    """دریافت اطلاعات یک ریپوزیتوری خاص"""
+    """دریافت اطلاعات یک ریپوزیتوری خاص (برای صفحه برنامه‌های دیگر)"""
     try:
         url = f'https://api.github.com/repos/{GITHUB_USERNAME}/{repo_name}'
         response = requests.get(url, timeout=10)
@@ -240,10 +238,9 @@ def get_repo_info(repo_name):
     except Exception as e:
         print(f"Error fetching repo info: {e}")
         return None
+
 def compare_versions_info():
-    """مقایسه نسخه محلی با نسخه گیت‌هاب با استفاده از مقایسه عددی"""
-    
-    
+    """مقایسه نسخه محلی با نسخه گیت‌هاب با استفاده از مقایسه عددی (برای آپدیت)"""
     local_version = get_current_version()
     github_version = get_github_version()
     
@@ -253,7 +250,6 @@ def compare_versions_info():
             'github': github_version,
             'is_up_to_date': False,
             'update_available': False,
-            'needs_downgrade': False,
             'comparison_result': None
         }
     
@@ -264,9 +260,10 @@ def compare_versions_info():
         'github': github_version,
         'is_up_to_date': comparison == 0,
         'update_available': comparison > 0,
-        'needs_downgrade': comparison < 0,
-        'comparison_result': comparison
+        'comparison_result': comparison,
+        'needs_downgrade': comparison < 0
     }
+
 def restart_program():
     """بستن برنامه فعلی و راه‌اندازی مجدد آن"""
     try:

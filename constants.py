@@ -24,3 +24,16 @@ months = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرد�
 colors = ['#CD853F', "#0004FF", "#C71585", "#FF0000",
           "#009999", '#006400', "#9C07FF", '#15FF00',
           "#FF69B4", '#FFD700', '#800080', color_buttons]
+
+# مرجع پنجره اصلی
+main_window_ref = None
+
+def set_main_window_ref(window):
+    """تنظیم مرجع پنجره اصلی"""
+    global main_window_ref
+    main_window_ref = window
+    print("Main window reference set in constants")  # برای دیباگ
+
+def get_main_window_ref():
+    """دریافت مرجع پنجره اصلی"""
+    return main_window_ref

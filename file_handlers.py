@@ -47,3 +47,11 @@ def load_image(lbl_load_page):
         lbl_load_page.configure(text=get_text('logo_selected'))
     else:
         lbl_load_page.configure(text=get_text('no_logo_selected'))
+
+def get_selected_files():
+    """دریافت مسیر فایل‌های انتخاب شده"""
+    return {
+        'pdf': selected_pdf_file,
+        'save_folder': save_in_folder,
+        'logo': path_load
+    }
